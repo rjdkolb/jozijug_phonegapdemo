@@ -20,20 +20,9 @@ import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.Ani
 import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlidePlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlideUpPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSwapPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.button.ButtonPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.buttonbar.ButtonBarPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.gcell.GroupedCellListPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.popup.PopupPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressbar.ProgressBarPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressindicator.ProgressIndicatorPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.pulltorefresh.PullToRefreshPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.scrollwidget.ScrollWidgetPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarPlace;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionEvent;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionNames;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace;
@@ -135,48 +124,20 @@ public class AppHistoryObserver implements HistoryObserver {
 				Place place = null;
 
 				switch (entry) {
-				case BUTTON_BAR:
-					place = new ButtonBarPlace();
-					break;
-				case BUTTONS:
-					place = new ButtonPlace();
-					break;
+
 				case ELEMENTS:
 					place = new ElementsPlace();
 					break;
 				case FORMS:
 					place = new FormsPlace();
 					break;
-				case POPUPS:
-					place = new PopupPlace();
-					break;
-				case PROGRESS_BAR:
-					place = new ProgressBarPlace();
-					break;
-				case PROGRESS_INDICATOR:
-					place = new ProgressIndicatorPlace();
-					break;
-				case PULL_TO_REFRESH:
-					place = new PullToRefreshPlace();
-					break;
-				case SCROLL_WIDGET:
-					place = new ScrollWidgetPlace();
-					break;
-				case SEARCH_BOX:
-					place = new SearchBoxPlace();
-					break;
-				case SLIDER:
-					place = new SliderPlace();
-					break;
-				case TABBAR:
-					place = new TabBarPlace();
-					break;
+
+
+
 				case CAROUSEL:
 					place = new CarouselPlace();
 					break;
-				case GROUP_LIST:
-					place = new GroupedCellListPlace();
-					break;
+
 				default:
 					break;
 				}
@@ -246,10 +207,10 @@ public class AppHistoryObserver implements HistoryObserver {
 							historyHandler.replaceCurrentPlace(new HomePlace());
 						} else {
 
-							if (place instanceof ButtonBarPlace || place instanceof GroupedCellListPlace || place instanceof CarouselPlace || place instanceof ButtonPlace
-									|| place instanceof ElementsPlace || place instanceof FormsPlace || place instanceof PopupPlace || place instanceof ProgressBarPlace
-									|| place instanceof ProgressIndicatorPlace || place instanceof PullToRefreshPlace || place instanceof ScrollWidgetPlace || place instanceof SearchBoxPlace
-									|| place instanceof SliderPlace || place instanceof TabBarPlace) {
+							if ( place instanceof CarouselPlace 
+									|| place instanceof ElementsPlace || place instanceof FormsPlace 
+									
+									) {
 								historyHandler.replaceCurrentPlace(new HomePlace());
 
 								historyHandler.pushPlace(new UIPlace());
@@ -282,10 +243,9 @@ public class AppHistoryObserver implements HistoryObserver {
 							historyHandler.replaceCurrentPlace(new HomePlace());
 						} else {
 
-							if (place instanceof ButtonBarPlace || place instanceof GroupedCellListPlace || place instanceof CarouselPlace || place instanceof ButtonPlace
-									|| place instanceof ElementsPlace || place instanceof FormsPlace || place instanceof PopupPlace || place instanceof ProgressBarPlace
-									|| place instanceof ProgressIndicatorPlace || place instanceof PullToRefreshPlace || place instanceof ScrollWidgetPlace || place instanceof SearchBoxPlace
-									|| place instanceof SliderPlace || place instanceof TabBarPlace) {
+							if ( place instanceof CarouselPlace 
+									|| place instanceof ElementsPlace || place instanceof FormsPlace  
+									) {
 								historyHandler.replaceCurrentPlace(new HomePlace());
 
 							}
