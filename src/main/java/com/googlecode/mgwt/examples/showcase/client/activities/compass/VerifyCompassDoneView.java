@@ -13,17 +13,18 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.googlecode.mgwt.examples.showcase.client.activities.animationdone;
+package com.googlecode.mgwt.examples.showcase.client.activities.compass;
 
 import com.google.gwt.user.client.ui.IsWidget;
 import com.googlecode.gwtphonegap.client.compass.CompassCallback;
+import com.googlecode.gwtphonegap.client.geolocation.GeolocationCallback;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 
 /**
  * @author Daniel Kurka
  * 
  */
-public interface VerifyPhoneGapDoneView extends IsWidget, CompassCallback {
+public interface VerifyCompassDoneView extends IsWidget, CompassCallback {
 	public HasTapHandlers getBackButton();
 
 }

@@ -2,7 +2,8 @@ package com.googlecode.mgwt.examples.showcase.client;
 
 import com.google.gwt.place.shared.Place;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyCompassPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.gps.VerifyGPSDoneView;
 import com.googlecode.mgwt.mvp.client.Animation;
 import com.googlecode.mgwt.mvp.client.AnimationMapper;
 
@@ -19,7 +20,9 @@ public class TabletMainAnimationMapper implements AnimationMapper {
 		if (oldPlace instanceof VerifyCompassPlace && newPlace instanceof AnimationPlace) {
 			return Animation.SLIDE_REVERSE;
 		}
-
+		if (oldPlace instanceof VerifyGPSDoneView && newPlace instanceof AnimationPlace) {
+			return Animation.SLIDE_REVERSE;
+		}
 		
 
 		//		if (oldPlace instanceof AnimationCubePlace && newPlace instanceof AnimationPlace) {

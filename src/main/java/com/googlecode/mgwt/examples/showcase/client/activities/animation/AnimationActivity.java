@@ -92,6 +92,7 @@ public class AnimationActivity extends MGWTAbstractActivity {
           public void onCellSelected(CellSelectedEvent event) {
             int index = event.getIndex();
 
+            
              TopicSelectedEvent.fire(eventBus, animations.get(index));
 
           }
@@ -113,11 +114,8 @@ public class AnimationActivity extends MGWTAbstractActivity {
   private List<Topic> createAnimations() {
     ArrayList<Topic> list = new ArrayList<Topic>();
 
-    list.add(new Topic("Compass",1));
-    //list.add(new Item(AnimationNames.SLIDE_UP, "Slide up"));
-   
-    // list.add(new Animation("Cube"));
-
+    list.add(new Topic("Verify Compass",1));
+    list.add(new Topic("Verify GPS",2));
     return list;
   }
 

@@ -11,11 +11,13 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.googlecode.mgwt.examples.showcase.client.activities.animationdone;
+package com.googlecode.mgwt.examples.showcase.client.activities.gps;
 
+import com.googlecode.mgwt.examples.showcase.client.activities.compass.*;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.gwtphonegap.client.compass.CompassWatcher;
+import com.googlecode.gwtphonegap.client.geolocation.GeolocationWatcher;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
@@ -27,26 +29,26 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
  * @author Daniel Kurka
  * 
  */
-public class PhoneGapFunctionalityVerfiedActivity extends MGWTAbstractActivity {
+public class GPSFunctionalityVerfiedActivity extends MGWTAbstractActivity {
 
   private final ClientFactory clientFactory;
 
-  private  CompassWatcher watcher;
+  private  GeolocationWatcher watcher;
   
   /**
 	 * 
 	 */
-  public PhoneGapFunctionalityVerfiedActivity(ClientFactory clientFactory) {
+  public GPSFunctionalityVerfiedActivity(ClientFactory clientFactory) {
     this.clientFactory = clientFactory;
 
   }
 
   @Override
   public void start(AcceptsOneWidget panel, final EventBus eventBus) {
-    VerifyPhoneGapDoneView view = clientFactory.getVerifyPhoneGapDoneView();
+    VerifyGPSDoneView view = clientFactory.getVerifyGPSView();
 
     
-    watcher = clientFactory.watchHeading(view);
+    watcher = clientFactory.watchGPS(view);
     
     addHandlerRegistration(view.getBackButton().addTapHandler(new TapHandler() {
 
@@ -64,7 +66,7 @@ public class PhoneGapFunctionalityVerfiedActivity extends MGWTAbstractActivity {
     @Override
     public void onStop() {
         super.onStop(); 
-        clientFactory.clearWatchHeading(watcher);
+        clientFactory.clearWatchGPS(watcher);
     }
 
 }

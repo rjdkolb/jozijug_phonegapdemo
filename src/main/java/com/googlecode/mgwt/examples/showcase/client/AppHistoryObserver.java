@@ -12,10 +12,11 @@ import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
 
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.TopicSelectedEvent;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyCompassPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.gps.VerifyGPSPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.home.Topic;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionEvent;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionNames;
@@ -60,11 +61,14 @@ public class AppHistoryObserver implements HistoryObserver {
                 Place place = null;
 
                 switch (animationName) {
-                    case 0:
+                    case 1:
                         place = new VerifyCompassPlace();
 
                         break;
+                    case 2:
+                        place = new VerifyGPSPlace();
 
+                        break;
 
                     default:
                         // TODO log

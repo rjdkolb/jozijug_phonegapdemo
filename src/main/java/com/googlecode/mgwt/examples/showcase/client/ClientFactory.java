@@ -19,14 +19,18 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.gwtphonegap.client.compass.CompassCallback;
 import com.googlecode.gwtphonegap.client.compass.CompassWatcher;
+import com.googlecode.gwtphonegap.client.geolocation.GeolocationCallback;
+import com.googlecode.gwtphonegap.client.geolocation.GeolocationOptions;
+import com.googlecode.gwtphonegap.client.geolocation.GeolocationWatcher;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutView;
 import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListView;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIView;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationView;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyPhoneGapDoneView;
+import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassDoneView;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselView;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsView;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsView;
+import com.googlecode.mgwt.examples.showcase.client.activities.gps.VerifyGPSDoneView;
 
 /**
  * @author Daniel Kurka
@@ -49,7 +53,7 @@ public interface ClientFactory {
 
     public AnimationView getAnimationView();
 
-    public VerifyPhoneGapDoneView getVerifyPhoneGapDoneView();
+    public VerifyCompassDoneView getVerifyCompassDoneView();
 
     public ElementsView getElementsView();
 
@@ -58,6 +62,12 @@ public interface ClientFactory {
     public FormsView getFormsView();
 
     public CompassWatcher watchHeading(CompassCallback callBack);
-    
+
     public void clearWatchHeading(CompassWatcher watcher);
+
+    public VerifyGPSDoneView getVerifyGPSView();
+
+    public GeolocationWatcher watchGPS(GeolocationCallback callBack);
+
+    public void clearWatchGPS(GeolocationWatcher watcher);
 }

@@ -19,10 +19,11 @@ import com.google.gwt.place.shared.Place;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyCompassPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.gps.VerifyGPSPlace;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace;
 import com.googlecode.mgwt.mvp.client.Animation;
 import com.googlecode.mgwt.mvp.client.AnimationMapper;
@@ -100,7 +101,9 @@ public class PhoneAnimationMapper implements AnimationMapper {
 		if (oldPlace instanceof VerifyCompassPlace && newPlace instanceof AnimationPlace) {
 			return Animation.SLIDE_REVERSE;
 		}
-
+		if (oldPlace instanceof VerifyGPSPlace && newPlace instanceof AnimationPlace) {
+			return Animation.SLIDE_REVERSE;
+		}
 		// if (oldPlace instanceof AnimationCubePlace && newPlace instanceof
 		// AnimationPlace) {
 		// return Animation.CUBE_REVERSE;

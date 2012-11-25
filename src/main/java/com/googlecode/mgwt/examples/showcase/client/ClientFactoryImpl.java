@@ -28,6 +28,9 @@ import com.googlecode.gwtphonegap.client.PhoneGapTimeoutHandler;
 import com.googlecode.gwtphonegap.client.compass.CompassCallback;
 import com.googlecode.gwtphonegap.client.compass.CompassOptions;
 import com.googlecode.gwtphonegap.client.compass.CompassWatcher;
+import com.googlecode.gwtphonegap.client.geolocation.GeolocationCallback;
+import com.googlecode.gwtphonegap.client.geolocation.GeolocationOptions;
+import com.googlecode.gwtphonegap.client.geolocation.GeolocationWatcher;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutView;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListView;
@@ -36,14 +39,16 @@ import com.googlecode.mgwt.examples.showcase.client.activities.UIView;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIViewImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationView;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationViewGwtImpl;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyPhoneGapDoneView;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyPhoneGapDoneViewGwtImpl;
+import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassDoneView;
+import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselView;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsView;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsViewImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsView;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsViewGwtImpl;
+import com.googlecode.mgwt.examples.showcase.client.activities.gps.VerifyGPSDoneView;
+import com.googlecode.mgwt.examples.showcase.client.activities.gps.VerifyGPSViewGwtImpl;
 
 /**
  * @author Daniel Kurka
@@ -57,13 +62,13 @@ public class ClientFactoryImpl implements ClientFactory {
     private UIView uiView;
     private AboutView aboutView;
     private AnimationView animationView;
-    private VerifyPhoneGapDoneView animationDoneView;
+    private VerifyCompassDoneView verifyCompassDoneView;
     private ElementsView elementsView;
     private FormsViewGwtImpl formsView;
     private CarouselView carouselView;
-
     final PhoneGap phoneGap;
-    
+    private VerifyGPSViewGwtImpl verifyGPSDoneView;
+
     public ClientFactoryImpl() {
         eventBus = new SimpleEventBus();
 
@@ -139,11 +144,11 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public VerifyPhoneGapDoneView getVerifyPhoneGapDoneView() {
-        if (animationDoneView == null) {
-            animationDoneView = new VerifyPhoneGapDoneViewGwtImpl();
+    public VerifyCompassDoneView getVerifyCompassDoneView() {
+        if (verifyCompassDoneView == null) {
+            verifyCompassDoneView = new VerifyCompassViewGwtImpl();
         }
-        return animationDoneView;
+        return verifyCompassDoneView;
     }
 
     @Override
@@ -170,16 +175,39 @@ public class ClientFactoryImpl implements ClientFactory {
         return carouselView;
     }
 
-    
-    public CompassWatcher watchHeading(CompassCallback callBack){
-        return phoneGap.getCompass().watchHeading(new CompassOptions(),callBack);
+    @Override
+    public VerifyGPSDoneView getVerifyGPSView() {
+        if (verifyGPSDoneView == null) {
+            verifyGPSDoneView = new VerifyGPSViewGwtImpl();
+        }
+        return verifyGPSDoneView;
     }
-    public void clearWatchHeading(CompassWatcher watcher){
-        if (watcher == null){
+
+    //--------------------
+    @Override
+    public CompassWatcher watchHeading(CompassCallback callBack) {
+        return phoneGap.getCompass().watchHeading(new CompassOptions(), callBack);
+    }
+
+    @Override
+    public void clearWatchHeading(CompassWatcher watcher) {
+        if (watcher == null) {
             return;
         }
         phoneGap.getCompass().clearWatcher(watcher);
     }
+    //--------------------
+    @Override
+    public GeolocationWatcher watchGPS(GeolocationCallback callBack) {
+        return phoneGap.getGeolocation().watchPosition(new GeolocationOptions(), callBack);
+    }
 
-
+    @Override
+    public void clearWatchGPS(GeolocationWatcher watcher) {
+        if (watcher == null) {
+            return;
+        }
+        phoneGap.getGeolocation().clearWatch(watcher);
+    }
+    
 }

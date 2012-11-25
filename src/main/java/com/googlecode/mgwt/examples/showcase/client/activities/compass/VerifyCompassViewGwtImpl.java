@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.googlecode.mgwt.examples.showcase.client.activities.animationdone;
+package com.googlecode.mgwt.examples.showcase.client.activities.compass;
 
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
@@ -28,7 +28,7 @@ import com.googlecode.mgwt.ui.client.widget.RoundPanel;
  * @author Daniel Kurka
  * 
  */
-public class VerifyPhoneGapDoneViewGwtImpl implements VerifyPhoneGapDoneView {
+public class VerifyCompassViewGwtImpl implements VerifyCompassDoneView {
 
 	private RoundPanel panel;
 	private Button button;
@@ -36,7 +36,7 @@ public class VerifyPhoneGapDoneViewGwtImpl implements VerifyPhoneGapDoneView {
 	/**
 	 * 
 	 */
-	public VerifyPhoneGapDoneViewGwtImpl() {
+	public VerifyCompassViewGwtImpl() {
 		panel = new RoundPanel();
 		panel.getElement().setAttribute("style", "text-align:center");
 		panel.setHeight("200px");

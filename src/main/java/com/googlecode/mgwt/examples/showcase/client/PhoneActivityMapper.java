@@ -25,14 +25,16 @@ import com.googlecode.mgwt.examples.showcase.client.activities.UIActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.PhoneGapFunctionalityVerfiedActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyCompassPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.compass.CompassFunctionalityVerfiedActivity;
+import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.gps.GPSFunctionalityVerfiedActivity;
+import com.googlecode.mgwt.examples.showcase.client.activities.gps.VerifyGPSPlace;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace;
 
 /**
@@ -85,9 +87,12 @@ public class PhoneActivityMapper implements ActivityMapper {
 			return new CarouselActivity(clientFactory);
 		}
 
+                if (place instanceof VerifyGPSPlace ) {
+                    return new GPSFunctionalityVerfiedActivity(clientFactory);
+                }
 
 		if (place instanceof VerifyCompassPlace ) {
-			return new PhoneGapFunctionalityVerfiedActivity(clientFactory);
+			return new CompassFunctionalityVerfiedActivity(clientFactory);
 		}
 		return new ShowCaseListActivity(clientFactory);
 	}

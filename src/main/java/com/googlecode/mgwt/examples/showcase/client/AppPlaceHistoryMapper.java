@@ -19,10 +19,11 @@ import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutPlace.AboutPlaceTokenizer;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace.UIPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyCompassPlace.VerifyCompassPlaceTokenizer;
+import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassPlace.VerifyCompassPlaceTokenizer;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace.ElementsPlaceTokenizer;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.gps.VerifyGPSPlace.VerifyGPSTokenizer;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace.HomePlaceTokenizer;
 
 /**
@@ -31,6 +32,6 @@ import com.googlecode.mgwt.examples.showcase.client.places.HomePlace.HomePlaceTo
  */
 @WithTokenizers({ HomePlaceTokenizer.class, UIPlaceTokenizer.class,  AboutPlaceTokenizer.class,  VerifyCompassPlaceTokenizer.class,
 		ElementsPlaceTokenizer.class, FormsPlace.Tokenizer.class,
-		CarouselPlace.Tokenizer.class,  })
+		CarouselPlace.Tokenizer.class, VerifyGPSTokenizer.class })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }
