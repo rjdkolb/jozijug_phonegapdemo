@@ -22,20 +22,14 @@ import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListView;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIView;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationView;
 import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDoneView;
-import com.googlecode.mgwt.examples.showcase.client.activities.button.ButtonView;
-import com.googlecode.mgwt.examples.showcase.client.activities.buttonbar.ButtonBarView;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselView;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsView;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsView;
-import com.googlecode.mgwt.examples.showcase.client.activities.gcell.GroupedCellListView;
-import com.googlecode.mgwt.examples.showcase.client.activities.popup.PopupView;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressbar.ProgressBarView;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressindicator.ProgressIndicatorView;
-import com.googlecode.mgwt.examples.showcase.client.activities.pulltorefresh.PullToRefreshDisplay;
-import com.googlecode.mgwt.examples.showcase.client.activities.scrollwidget.ScrollWidgetView;
-import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxView;
-import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderView;
-import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarView;
+
+
+
+
+
 
 /**
  * @author Daniel Kurka
@@ -59,35 +53,21 @@ public interface ClientFactory {
 
 	public AnimationDoneView getAnimationDoneView();
 
-	public ScrollWidgetView getScrollWidgetView();
 
 	public ElementsView getElementsView();
 
-	public ButtonBarView getButtonBarView();
 
-	public SearchBoxView getSearchBoxView();
 
-	public TabBarView getTabBarView();
 
-	public ButtonView getButtonView();
 
-	/**
-	 * 
-	 */
-	public PopupView getPopupView();
 
-	public ProgressBarView getProgressBarView();
 
-	public SliderView getSliderView();
 
 	public CarouselView getCarouselHorizontalView();
 
-	public PullToRefreshDisplay getPullToRefreshDisplay();
 
-	public ProgressIndicatorView getProgressIndicatorView();
 
 	public FormsView getFormsView();
 
-	public GroupedCellListView getGroupedCellListView();
 
 }

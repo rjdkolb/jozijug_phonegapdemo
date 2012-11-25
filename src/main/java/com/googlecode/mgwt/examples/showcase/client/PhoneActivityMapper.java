@@ -33,34 +33,12 @@ import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.Ani
 import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlidePlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlideUpPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSwapPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.button.ButtonActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.button.ButtonPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.buttonbar.ButtonBarActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.buttonbar.ButtonBarPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.gcell.GroupedCellListActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.gcell.GroupedCellListPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.popup.PopupActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.popup.PopupPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressbar.ProgressBarActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressbar.ProgressBarPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressindicator.ProgressIndicatorActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressindicator.ProgressIndicatorPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.pulltorefresh.PullToRefreshActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.pulltorefresh.PullToRefreshPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.scrollwidget.ScrollWidgetActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.scrollwidget.ScrollWidgetPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarPlace;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace;
 
 /**
@@ -93,9 +71,7 @@ public class PhoneActivityMapper implements ActivityMapper {
 			return new AnimationActivity(clientFactory);
 		}
 
-		if (place instanceof ScrollWidgetPlace) {
-			return new ScrollWidgetActivity(clientFactory);
-		}
+
 
 		if (place instanceof ElementsPlace) {
 			return new ElementsActivity(clientFactory);
@@ -105,48 +81,16 @@ public class PhoneActivityMapper implements ActivityMapper {
 			return new FormsActivity(clientFactory);
 		}
 
-		if (place instanceof ButtonBarPlace) {
-			return new ButtonBarActivity(clientFactory);
-		}
 
-		if (place instanceof SearchBoxPlace) {
-			return new SearchBoxActivity(clientFactory);
-		}
 
-		if (place instanceof TabBarPlace) {
-			return new TabBarActivity(clientFactory);
-		}
 
-		if (place instanceof ButtonPlace) {
-			return new ButtonActivity(clientFactory);
-		}
+		
 
-		if (place instanceof PopupPlace) {
-			return new PopupActivity(clientFactory);
-		}
-
-		if (place instanceof ProgressBarPlace) {
-			return new ProgressBarActivity(clientFactory);
-		}
-
-		if (place instanceof ProgressIndicatorPlace) {
-			return new ProgressIndicatorActivity(clientFactory);
-		}
-
-		if (place instanceof SliderPlace) {
-			return new SliderActivity(clientFactory);
-		}
-		if (place instanceof PullToRefreshPlace) {
-			return new PullToRefreshActivity(clientFactory);
-		}
-
+	
 		if (place instanceof CarouselPlace) {
 			return new CarouselActivity(clientFactory);
 		}
 
-		if (place instanceof GroupedCellListPlace) {
-			return new GroupedCellListActivity(clientFactory);
-		}
 
 		if (place instanceof AnimationSlidePlace || place instanceof AnimationSlideUpPlace || place instanceof AnimationDissolvePlace || place instanceof AnimationFadePlace
 				|| place instanceof AnimationFlipPlace || place instanceof AnimationPopPlace || place instanceof AnimationSwapPlace || place instanceof AnimationSwapPlace) {

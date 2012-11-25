@@ -26,20 +26,9 @@ import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.Ani
 import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlidePlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlideUpPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSwapPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.button.ButtonPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.buttonbar.ButtonBarPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.gcell.GroupedCellListPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.popup.PopupPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressbar.ProgressBarPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressindicator.ProgressIndicatorPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.pulltorefresh.PullToRefreshPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.scrollwidget.ScrollWidgetPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarPlace;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace;
 import com.googlecode.mgwt.mvp.client.Animation;
 import com.googlecode.mgwt.mvp.client.AnimationMapper;
@@ -77,13 +66,7 @@ public class PhoneAnimationMapper implements AnimationMapper {
 			return Animation.SLIDE_REVERSE;
 		}
 
-		if (oldPlace instanceof UIPlace && newPlace instanceof ScrollWidgetPlace) {
-			return Animation.SLIDE;
-		}
-
-		if (oldPlace instanceof ScrollWidgetPlace && newPlace instanceof UIPlace) {
-			return Animation.SLIDE_REVERSE;
-		}
+		
 
 		if (oldPlace instanceof UIPlace && newPlace instanceof ElementsPlace) {
 			return Animation.SLIDE;
@@ -101,77 +84,12 @@ public class PhoneAnimationMapper implements AnimationMapper {
 			return Animation.SLIDE_REVERSE;
 		}
 
-		if (oldPlace instanceof UIPlace && newPlace instanceof ButtonBarPlace) {
-			return Animation.SLIDE;
-		}
 
-		if (oldPlace instanceof ButtonBarPlace && newPlace instanceof UIPlace) {
-			return Animation.SLIDE_REVERSE;
-		}
 
-		if (oldPlace instanceof UIPlace && newPlace instanceof SearchBoxPlace) {
-			return Animation.SLIDE;
-		}
 
-		if (oldPlace instanceof SearchBoxPlace && newPlace instanceof UIPlace) {
-			return Animation.SLIDE_REVERSE;
-		}
+		
 
-		if (oldPlace instanceof UIPlace && newPlace instanceof TabBarPlace) {
-			return Animation.SLIDE;
-		}
-
-		if (oldPlace instanceof TabBarPlace && newPlace instanceof UIPlace) {
-			return Animation.SLIDE_REVERSE;
-		}
-
-		if (oldPlace instanceof UIPlace && newPlace instanceof ButtonPlace) {
-			return Animation.SLIDE;
-		}
-
-		if (oldPlace instanceof ButtonPlace && newPlace instanceof UIPlace) {
-			return Animation.SLIDE_REVERSE;
-		}
-
-		if (oldPlace instanceof UIPlace && newPlace instanceof PopupPlace) {
-			return Animation.SLIDE;
-		}
-
-		if (oldPlace instanceof PopupPlace && newPlace instanceof UIPlace) {
-			return Animation.SLIDE_REVERSE;
-		}
-
-		if (oldPlace instanceof UIPlace && newPlace instanceof ProgressBarPlace) {
-			return Animation.SLIDE;
-		}
-
-		if (oldPlace instanceof ProgressBarPlace && newPlace instanceof UIPlace) {
-			return Animation.SLIDE_REVERSE;
-		}
-
-		if (oldPlace instanceof UIPlace && newPlace instanceof ProgressIndicatorPlace) {
-			return Animation.SLIDE;
-		}
-
-		if (oldPlace instanceof ProgressIndicatorPlace && newPlace instanceof UIPlace) {
-			return Animation.SLIDE_REVERSE;
-		}
-
-		if (oldPlace instanceof UIPlace && newPlace instanceof SliderPlace) {
-			return Animation.SLIDE;
-		}
-
-		if (oldPlace instanceof SliderPlace && newPlace instanceof UIPlace) {
-			return Animation.SLIDE_REVERSE;
-		}
-
-		if (oldPlace instanceof UIPlace && newPlace instanceof PullToRefreshPlace) {
-			return Animation.SLIDE;
-		}
-
-		if (oldPlace instanceof PullToRefreshPlace && newPlace instanceof UIPlace) {
-			return Animation.SLIDE_REVERSE;
-		}
+		
 
 		if (oldPlace instanceof UIPlace && newPlace instanceof CarouselPlace) {
 			return Animation.SLIDE;
@@ -181,13 +99,7 @@ public class PhoneAnimationMapper implements AnimationMapper {
 			return Animation.SLIDE_REVERSE;
 		}
 
-		if (oldPlace instanceof UIPlace && newPlace instanceof GroupedCellListPlace) {
-			return Animation.SLIDE;
-		}
 
-		if (oldPlace instanceof GroupedCellListPlace && newPlace instanceof UIPlace) {
-			return Animation.SLIDE_REVERSE;
-		}
 
 		// animation
 

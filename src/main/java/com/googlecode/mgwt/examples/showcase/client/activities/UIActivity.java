@@ -87,20 +87,11 @@ public class UIActivity extends MGWTAbstractActivity {
    */
   private List<Item> createItems() {
     ArrayList<Item> list = new ArrayList<Item>();
-    list.add(new Item("ButtonBar", UIEntry.BUTTON_BAR));
-    list.add(new Item("Buttons", UIEntry.BUTTONS));
+
     list.add(new Item("Carousel", UIEntry.CAROUSEL));
     list.add(new Item("Elements", UIEntry.ELEMENTS));
     list.add(new Item("Forms", UIEntry.FORMS));
-    list.add(new Item("Group List", UIEntry.GROUP_LIST));
-    list.add(new Item("Popups", UIEntry.POPUPS));
-    list.add(new Item("ProgressBar", UIEntry.PROGRESS_BAR));
-    list.add(new Item("ProgressIndicator", UIEntry.PROGRESS_INDICATOR));
-    list.add(new Item("PullToRefresh", UIEntry.PULL_TO_REFRESH));
-    list.add(new Item("Scroll Widget", UIEntry.SCROLL_WIDGET));
-    list.add(new Item("Searchbox", UIEntry.SEARCH_BOX));
-    list.add(new Item("Slider", UIEntry.SLIDER));
-    list.add(new Item("TabBar", UIEntry.TABBAR));
+   
     return list;
   }
 
