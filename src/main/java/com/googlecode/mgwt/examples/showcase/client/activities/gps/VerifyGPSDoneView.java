@@ -23,9 +23,9 @@ import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
-public interface VerifyGPSDoneView extends IsWidget , GeolocationCallback{
-	public HasTapHandlers getBackButton();
+public interface VerifyGPSDoneView extends IsWidget, GeolocationCallback {
 
+    public HasTapHandlers getBackButton();
 }

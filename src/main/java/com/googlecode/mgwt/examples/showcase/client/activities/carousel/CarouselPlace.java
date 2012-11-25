@@ -20,21 +20,21 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class CarouselPlace extends Place {
-	public static class Tokenizer implements PlaceTokenizer<CarouselPlace> {
 
-		@Override
-		public CarouselPlace getPlace(String token) {
-			return new CarouselPlace();
-		}
+    public static class Tokenizer implements PlaceTokenizer<CarouselPlace> {
 
-		@Override
-		public String getToken(CarouselPlace place) {
+        @Override
+        public CarouselPlace getPlace(String token) {
+            return new CarouselPlace();
+        }
 
-			return "";
-		}
+        @Override
+        public String getToken(CarouselPlace place) {
 
-	}
+            return "";
+        }
+    }
 }

@@ -25,43 +25,42 @@ import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class CarouselViewGwtImpl extends DetailViewGwtImpl implements CarouselView {
 
-	private Carousel carousel;
+    private Carousel carousel;
 
-	public CarouselViewGwtImpl() {
+    public CarouselViewGwtImpl() {
 
-		scrollPanel.removeFromParent();
+        scrollPanel.removeFromParent();
 
-		carousel = new Carousel();
+        carousel = new Carousel();
 
-		main.add(carousel);
+        main.add(carousel);
 
-		for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
 
-			ScrollPanel scrollPanel2 = new ScrollPanel();
-			scrollPanel2.setScrollingEnabledX(false);
-			// scrollPanel2.setWidth("100%");
+            ScrollPanel scrollPanel2 = new ScrollPanel();
+            scrollPanel2.setScrollingEnabledX(false);
+            // scrollPanel2.setWidth("100%");
 
-			RoundPanel flowPanel3 = new RoundPanel();
-			for (int j = 0; j < 10; j++) {
-				HTML html = new HTML("Slide: " + (i + 1));
-				html.getElement().getStyle().setMarginBottom(300, Unit.PX);
-				flowPanel3.add(html);
-			}
+            RoundPanel flowPanel3 = new RoundPanel();
+            for (int j = 0; j < 10; j++) {
+                HTML html = new HTML("Slide: " + (i + 1));
+                html.getElement().getStyle().setMarginBottom(300, Unit.PX);
+                flowPanel3.add(html);
+            }
 
-			scrollPanel2.setWidget(flowPanel3);
+            scrollPanel2.setWidget(flowPanel3);
 
-			carousel.add(scrollPanel2);
-		}
+            carousel.add(scrollPanel2);
+        }
 
-	}
+    }
 
-	@Override
-	public HasSelectionHandlers<Integer> getSwipePanel() {
-		return carousel;
-	}
-
+    @Override
+    public HasSelectionHandlers<Integer> getSwipePanel() {
+        return carousel;
+    }
 }

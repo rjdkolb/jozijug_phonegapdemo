@@ -6,7 +6,7 @@ import com.google.gwt.place.shared.Place;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.testphonegap.TestPhoneGapPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.compass.CompassFunctionalityVerfiedActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselActivity;
@@ -82,7 +82,7 @@ public class TabletMainActivityMapper implements ActivityMapper {
 
 
 
-        if (newPlace instanceof AnimationPlace) {
+        if (newPlace instanceof TestPhoneGapPlace) {
             return new AboutActivity(clientFactory);
         }
 

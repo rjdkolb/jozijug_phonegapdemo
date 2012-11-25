@@ -19,26 +19,27 @@ import com.googlecode.mgwt.examples.showcase.client.activities.UIEntrySelectedEv
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class Item {
-	private String displayString;
-	private final UIEntry entry;
 
-	public Item(String displayString, UIEntry entry) {
-		this.displayString = displayString;
-		this.entry = entry;
+    private String displayString;
+    private final UIEntry entry;
 
-	}
+    public Item(String displayString, UIEntry entry) {
+        this.displayString = displayString;
+        this.entry = entry;
 
-	/**
-	 * @return the displayString
-	 */
-	public String getDisplayString() {
-		return displayString;
-	}
+    }
 
-	public UIEntry getEntry() {
-		return entry;
-	}
+    /**
+     * @return the displayString
+     */
+    public String getDisplayString() {
+        return displayString;
+    }
+
+    public UIEntry getEntry() {
+        return entry;
+    }
 }

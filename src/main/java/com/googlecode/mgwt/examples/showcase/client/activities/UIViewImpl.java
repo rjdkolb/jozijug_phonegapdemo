@@ -30,87 +30,85 @@ import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class UIViewImpl implements UIView {
 
-	private LayoutPanel main;
-	private HeaderPanel headerPanel;
-	private HeaderButton headerBackButton;
-	private CellList<Item> cellListWithHeader;
+    private LayoutPanel main;
+    private HeaderPanel headerPanel;
+    private HeaderButton headerBackButton;
+    private CellList<Item> cellListWithHeader;
 
-	public UIViewImpl() {
-		main = new LayoutPanel();
+    public UIViewImpl() {
+        main = new LayoutPanel();
 
-		main.getElement().setId("testdiv");
+        main.getElement().setId("testdiv");
 
-		headerPanel = new HeaderPanel();
-		main.add(headerPanel);
+        headerPanel = new HeaderPanel();
+        main.add(headerPanel);
 
-		headerBackButton = new HeaderButton();
-		headerBackButton.setBackButton(true);
-		headerPanel.setLeftWidget(headerBackButton);
-		headerBackButton.setVisible(!MGWT.getOsDetection().isAndroid());
+        headerBackButton = new HeaderButton();
+        headerBackButton.setBackButton(true);
+        headerPanel.setLeftWidget(headerBackButton);
+        headerBackButton.setVisible(!MGWT.getOsDetection().isAndroid());
 
-		ScrollPanel scrollPanel = new ScrollPanel();
+        ScrollPanel scrollPanel = new ScrollPanel();
 
-		cellListWithHeader = new CellList<Item>(new BasicCell<Item>() {
+        cellListWithHeader = new CellList<Item>(new BasicCell<Item>() {
+            @Override
+            public String getDisplayString(Item model) {
+                return model.getDisplayString();
+            }
 
-			@Override
-			public String getDisplayString(Item model) {
-				return model.getDisplayString();
-			}
+            @Override
+            public boolean canBeSelected(Item model) {
+                return true;
+            }
+        });
+        cellListWithHeader.setRound(true);
+        scrollPanel.setWidget(cellListWithHeader);
+        scrollPanel.setScrollingEnabledX(false);
 
-			@Override
-			public boolean canBeSelected(Item model) {
-				return true;
-			}
-		});
-		cellListWithHeader.setRound(true);
-		scrollPanel.setWidget(cellListWithHeader);
-		scrollPanel.setScrollingEnabledX(false);
+        main.add(scrollPanel);
 
-		main.add(scrollPanel);
+    }
 
-	}
+    @Override
+    public Widget asWidget() {
+        return main;
+    }
 
-	@Override
-	public Widget asWidget() {
-		return main;
-	}
+    @Override
+    public void setBackButtonText(String text) {
+        headerBackButton.setText(text);
 
-	@Override
-	public void setBackButtonText(String text) {
-		headerBackButton.setText(text);
+    }
 
-	}
+    @Override
+    public HasTapHandlers getBackButton() {
+        return headerBackButton;
+    }
 
-	@Override
-	public HasTapHandlers getBackButton() {
-		return headerBackButton;
-	}
+    @Override
+    public void setTitle(String title) {
+        headerPanel.setCenter(title);
 
-	@Override
-	public void setTitle(String title) {
-		headerPanel.setCenter(title);
+    }
 
-	}
+    @Override
+    public HasCellSelectedHandler getList() {
+        return cellListWithHeader;
+    }
 
-	@Override
-	public HasCellSelectedHandler getList() {
-		return cellListWithHeader;
-	}
+    @Override
+    public void renderItems(List<Item> items) {
+        cellListWithHeader.render(items);
 
-	@Override
-	public void renderItems(List<Item> items) {
-		cellListWithHeader.render(items);
+    }
 
-	}
+    @Override
+    public void setSelectedIndex(int index, boolean selected) {
+        cellListWithHeader.setSelectedIndex(index, selected);
 
-	@Override
-	public void setSelectedIndex(int index, boolean selected) {
-		cellListWithHeader.setSelectedIndex(index, selected);
-
-	}
-
+    }
 }

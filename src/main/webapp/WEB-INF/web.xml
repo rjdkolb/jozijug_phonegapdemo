@@ -18,9 +18,9 @@
    <servlet-class>com.googlecode.mgwt.linker.server.MGWTHtml5ManifestServlet</servlet-class>
  </servlet>
 
-  <servlet-mapping>
-    <servlet-name>ManifestServlet</servlet-name>
-    <url-pattern>/showcase.manifest</url-pattern>
-  </servlet-mapping>
--->
+      <servlet-mapping>
+        <servlet-name>ManifestServlet</servlet-name>
+        <url-pattern>/showcase.manifest</url-pattern>
+      </servlet-mapping>
+    -->
 </web-app>

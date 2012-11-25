@@ -27,46 +27,43 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class GPSFunctionalityVerfiedActivity extends MGWTAbstractActivity {
 
-  private final ClientFactory clientFactory;
+    private final ClientFactory clientFactory;
+    private GeolocationWatcher watcher;
 
-  private  GeolocationWatcher watcher;
-  
-  /**
-	 * 
-	 */
-  public GPSFunctionalityVerfiedActivity(ClientFactory clientFactory) {
-    this.clientFactory = clientFactory;
+    /**
+     *
+     */
+    public GPSFunctionalityVerfiedActivity(ClientFactory clientFactory) {
+        this.clientFactory = clientFactory;
 
-  }
+    }
 
-  @Override
-  public void start(AcceptsOneWidget panel, final EventBus eventBus) {
-    VerifyGPSDoneView view = clientFactory.getVerifyGPSView();
+    @Override
+    public void start(AcceptsOneWidget panel, final EventBus eventBus) {
+        VerifyGPSDoneView view = clientFactory.getVerifyGPSView();
 
-    
-    watcher = clientFactory.watchGPS(view);
-    
-    addHandlerRegistration(view.getBackButton().addTapHandler(new TapHandler() {
 
-      @Override
-      public void onTap(TapEvent event) {
-        ActionEvent.fire(eventBus, ActionNames.ANIMATION_END);
+        watcher = clientFactory.watchGPS(view);
 
-      }
-    }));
+        addHandlerRegistration(view.getBackButton().addTapHandler(new TapHandler() {
+            @Override
+            public void onTap(TapEvent event) {
+                ActionEvent.fire(eventBus, ActionNames.ANIMATION_END);
 
-    panel.setWidget(view);
+            }
+        }));
 
-  }
+        panel.setWidget(view);
+
+    }
 
     @Override
     public void onStop() {
-        super.onStop(); 
+        super.onStop();
         clientFactory.clearWatchGPS(watcher);
     }
-
 }

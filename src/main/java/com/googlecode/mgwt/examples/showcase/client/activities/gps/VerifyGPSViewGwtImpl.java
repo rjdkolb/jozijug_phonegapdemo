@@ -29,53 +29,51 @@ import com.googlecode.mgwt.ui.client.widget.RoundPanel;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class VerifyGPSViewGwtImpl implements VerifyGPSDoneView {
 
-	private RoundPanel panel;
-	private Button button;
-        Label gpsLabel = new Label();
-	/**
-	 * 
-	 */
-	public VerifyGPSViewGwtImpl() {
-		panel = new RoundPanel();
-		panel.getElement().setAttribute("style", "text-align:center");
-		panel.setHeight("200px");
+    private RoundPanel panel;
+    private Button button;
+    Label gpsLabel = new Label();
 
-		
-
-		panel.add(gpsLabel);
-
-		button = new Button();
-		button.getElement().setAttribute("style", "margin:auto;width: 200px; top: 125px; position:relative;");
-		button.setText("Back");
-
-		panel.add(button);
-
-	}
-
-	@Override
-	public Widget asWidget() {
-		return panel;
-	}
-
-	@Override
-	public HasTapHandlers getBackButton() {
-		return button;
-	}
+    /**
+     *
+     */
+    public VerifyGPSViewGwtImpl() {
+        panel = new RoundPanel();
+        panel.getElement().setAttribute("style", "text-align:center");
+        panel.setHeight("200px");
 
 
+
+        panel.add(gpsLabel);
+
+        button = new Button();
+        button.getElement().setAttribute("style", "margin:auto;width: 200px; top: 125px; position:relative;");
+        button.setText("Back");
+
+        panel.add(button);
+
+    }
+
+    @Override
+    public Widget asWidget() {
+        return panel;
+    }
+
+    @Override
+    public HasTapHandlers getBackButton() {
+        return button;
+    }
 
     @Override
     public void onSuccess(Position position) {
-        gpsLabel.setText("GPS Success "+position.getCoordinates().getLongitude() + " "+position.getCoordinates().getLatitude());
+        gpsLabel.setText("GPS Success " + position.getCoordinates().getLongitude() + " " + position.getCoordinates().getLatitude());
     }
 
     @Override
     public void onFailure(PositionError error) {
-        gpsLabel.setText("GPS Error "+error.getMessage());
+        gpsLabel.setText("GPS Error " + error.getMessage());
     }
-
 }

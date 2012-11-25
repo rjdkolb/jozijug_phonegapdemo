@@ -22,27 +22,26 @@ import com.googlecode.mgwt.examples.showcase.client.DetailActivity;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class ElementsActivity extends DetailActivity {
 
-	private final ClientFactory clientFactory;
+    private final ClientFactory clientFactory;
 
-	public ElementsActivity(ClientFactory clientFactory) {
-		super(clientFactory.getElementsView(), "nav");
-		this.clientFactory = clientFactory;
+    public ElementsActivity(ClientFactory clientFactory) {
+        super(clientFactory.getElementsView(), "nav");
+        this.clientFactory = clientFactory;
 
-	}
+    }
 
-	@Override
-	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		super.start(panel, eventBus);
-		ElementsView view = clientFactory.getElementsView();
-		view.getMainButtonText().setText("Nav");
-		view.getBackbuttonText().setText("UI");
-		view.getHeader().setText("Elements");
+    @Override
+    public void start(AcceptsOneWidget panel, EventBus eventBus) {
+        super.start(panel, eventBus);
+        ElementsView view = clientFactory.getElementsView();
+        view.getMainButtonText().setText("Nav");
+        view.getBackbuttonText().setText("UI");
+        view.getHeader().setText("Elements");
 
-		panel.setWidget(view);
-	}
-
+        panel.setWidget(view);
+    }
 }

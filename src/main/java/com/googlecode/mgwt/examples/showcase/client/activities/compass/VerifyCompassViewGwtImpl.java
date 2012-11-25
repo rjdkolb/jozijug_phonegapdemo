@@ -26,51 +26,51 @@ import com.googlecode.mgwt.ui.client.widget.RoundPanel;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class VerifyCompassViewGwtImpl implements VerifyCompassDoneView {
 
-	private RoundPanel panel;
-	private Button button;
-        Label compassLabel = new Label();
-	/**
-	 * 
-	 */
-	public VerifyCompassViewGwtImpl() {
-		panel = new RoundPanel();
-		panel.getElement().setAttribute("style", "text-align:center");
-		panel.setHeight("200px");
+    private RoundPanel panel;
+    private Button button;
+    Label compassLabel = new Label();
 
-		
+    /**
+     *
+     */
+    public VerifyCompassViewGwtImpl() {
+        panel = new RoundPanel();
+        panel.getElement().setAttribute("style", "text-align:center");
+        panel.setHeight("200px");
 
-		panel.add(compassLabel);
 
-		button = new Button();
-		button.getElement().setAttribute("style", "margin:auto;width: 200px; top: 125px; position:relative;");
-		button.setText("Back");
 
-		panel.add(button);
+        panel.add(compassLabel);
 
-	}
+        button = new Button();
+        button.getElement().setAttribute("style", "margin:auto;width: 200px; top: 125px; position:relative;");
+        button.setText("Back");
 
-	@Override
-	public Widget asWidget() {
-		return panel;
-	}
+        panel.add(button);
 
-	@Override
-	public HasTapHandlers getBackButton() {
-		return button;
-	}
+    }
+
+    @Override
+    public Widget asWidget() {
+        return panel;
+    }
+
+    @Override
+    public HasTapHandlers getBackButton() {
+        return button;
+    }
 
     @Override
     public void onError(CompassError error) {
-        compassLabel.setText("Error "+error.toString());
+        compassLabel.setText("Error " + error.toString());
     }
 
     @Override
     public void onSuccess(CompassHeading heading) {
-        compassLabel.setText("Success "+heading.getTimeStamp() + " "+heading.getMagneticHeading());
+        compassLabel.setText("Success " + heading.getTimeStamp() + " " + heading.getMagneticHeading());
     }
-
 }

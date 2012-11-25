@@ -22,22 +22,21 @@ import com.googlecode.mgwt.examples.showcase.client.DetailActivity;
 
 public class FormsActivity extends DetailActivity {
 
-	private final ClientFactory clientFactory;
+    private final ClientFactory clientFactory;
 
-	public FormsActivity(ClientFactory clientFactory) {
-		super(clientFactory.getFormsView(), "nav");
-		this.clientFactory = clientFactory;
-	}
+    public FormsActivity(ClientFactory clientFactory) {
+        super(clientFactory.getFormsView(), "nav");
+        this.clientFactory = clientFactory;
+    }
 
-	@Override
-	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		super.start(panel, eventBus);
-		FormsView view = clientFactory.getFormsView();
-		view.getMainButtonText().setText("Nav");
-		view.getBackbuttonText().setText("UI");
-		view.getHeader().setText("Forms");
+    @Override
+    public void start(AcceptsOneWidget panel, EventBus eventBus) {
+        super.start(panel, eventBus);
+        FormsView view = clientFactory.getFormsView();
+        view.getMainButtonText().setText("Nav");
+        view.getBackbuttonText().setText("UI");
+        view.getHeader().setText("Forms");
 
-		panel.setWidget(view);
-	}
-
+        panel.setWidget(view);
+    }
 }

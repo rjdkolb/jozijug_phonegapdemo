@@ -8,8 +8,8 @@ import com.googlecode.mgwt.examples.showcase.client.activities.AboutPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.testphonegap.TestPhoneGapActivity;
+import com.googlecode.mgwt.examples.showcase.client.activities.testphonegap.TestPhoneGapPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace;
@@ -28,7 +28,7 @@ public class TabletNavActivityMapper implements ActivityMapper {
     }
     private UIActivity uiActivity;
     private ShowCaseListActivity showCaseListActivity;
-    private AnimationActivity animationActivity;
+    private TestPhoneGapActivity animationActivity;
 
     private Activity getUIActivity() {
         if (uiActivity == null) {
@@ -46,7 +46,7 @@ public class TabletNavActivityMapper implements ActivityMapper {
 
     private Activity getAnimationActicity() {
         if (animationActivity == null) {
-            animationActivity = new AnimationActivity(clientFactory);
+            animationActivity = new TestPhoneGapActivity(clientFactory);
         }
         return animationActivity;
     }
@@ -62,7 +62,7 @@ public class TabletNavActivityMapper implements ActivityMapper {
             return getUIActivity();
         }
 
-        if (place instanceof AnimationPlace) {
+        if (place instanceof TestPhoneGapPlace) {
             return getAnimationActicity();
         }
 

@@ -22,9 +22,9 @@ import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public interface VerifyCompassDoneView extends IsWidget, CompassCallback {
-	public HasTapHandlers getBackButton();
 
+    public HasTapHandlers getBackButton();
 }

@@ -28,10 +28,10 @@ import com.googlecode.mgwt.examples.showcase.client.places.HomePlace.HomePlaceTo
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
-@WithTokenizers({ HomePlaceTokenizer.class, UIPlaceTokenizer.class,  AboutPlaceTokenizer.class,  VerifyCompassPlaceTokenizer.class,
-		ElementsPlaceTokenizer.class, FormsPlace.Tokenizer.class,
-		CarouselPlace.Tokenizer.class, VerifyGPSTokenizer.class })
+@WithTokenizers({HomePlaceTokenizer.class, UIPlaceTokenizer.class, AboutPlaceTokenizer.class, VerifyCompassPlaceTokenizer.class,
+    ElementsPlaceTokenizer.class, FormsPlace.Tokenizer.class,
+    CarouselPlace.Tokenizer.class, VerifyGPSTokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

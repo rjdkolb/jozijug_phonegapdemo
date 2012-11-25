@@ -20,10 +20,9 @@ import com.googlecode.mgwt.examples.showcase.client.DetailView;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public interface CarouselView extends DetailView {
 
-	public HasSelectionHandlers<Integer> getSwipePanel();
-
+    public HasSelectionHandlers<Integer> getSwipePanel();
 }

@@ -18,5 +18,4 @@ package com.googlecode.mgwt.examples.showcase.client.activities.forms;
 import com.googlecode.mgwt.examples.showcase.client.DetailView;
 
 public interface FormsView extends DetailView {
-
 }

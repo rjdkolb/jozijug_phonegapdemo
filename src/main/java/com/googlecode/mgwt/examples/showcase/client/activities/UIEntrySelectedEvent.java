@@ -6,46 +6,47 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
 
 public class UIEntrySelectedEvent extends Event<UIEntrySelectedEvent.Handler> {
 
-	public enum UIEntry {
-		BUTTON_BAR, BUTTONS, ELEMENTS, POPUPS, PROGRESS_BAR, PROGRESS_INDICATOR, PULL_TO_REFRESH, SCROLL_WIDGET, SEARCH_BOX, SLIDER, TABBAR, FORMS, CAROUSEL, CAROUSEL_VERT, GROUP_LIST
-	}
+    public enum UIEntry {
 
-	public interface Handler {
-		void onAnimationSelected(UIEntrySelectedEvent event);
-	}
+        BUTTON_BAR, BUTTONS, ELEMENTS, POPUPS, PROGRESS_BAR, PROGRESS_INDICATOR, PULL_TO_REFRESH, SCROLL_WIDGET, SEARCH_BOX, SLIDER, TABBAR, FORMS, CAROUSEL, CAROUSEL_VERT, GROUP_LIST
+    }
 
-	private static final Type<UIEntrySelectedEvent.Handler> TYPE = new Type<UIEntrySelectedEvent.Handler>();
-	private final UIEntry entry;
+    public interface Handler {
 
-	public static void fire(EventBus eventBus, UIEntry entry) {
-		eventBus.fireEvent(new UIEntrySelectedEvent(entry));
-	}
+        void onAnimationSelected(UIEntrySelectedEvent event);
+    }
+    private static final Type<UIEntrySelectedEvent.Handler> TYPE = new Type<UIEntrySelectedEvent.Handler>();
+    private final UIEntry entry;
 
-	public static HandlerRegistration register(EventBus eventBus, Handler handler) {
-		return eventBus.addHandler(TYPE, handler);
-	}
+    public static void fire(EventBus eventBus, UIEntry entry) {
+        eventBus.fireEvent(new UIEntrySelectedEvent(entry));
+    }
 
-	@Override
-	public com.google.web.bindery.event.shared.Event.Type<Handler> getAssociatedType() {
-		return TYPE;
-	}
+    public static HandlerRegistration register(EventBus eventBus, Handler handler) {
+        return eventBus.addHandler(TYPE, handler);
+    }
 
-	protected UIEntrySelectedEvent(UIEntry entry) {
-		this.entry = entry;
+    @Override
+    public com.google.web.bindery.event.shared.Event.Type<Handler> getAssociatedType() {
+        return TYPE;
+    }
 
-	}
+    protected UIEntrySelectedEvent(UIEntry entry) {
+        this.entry = entry;
 
-	@Override
-	protected void dispatch(Handler handler) {
-		handler.onAnimationSelected(this);
+    }
 
-	}
+    @Override
+    protected void dispatch(Handler handler) {
+        handler.onAnimationSelected(this);
 
-	public static Type<UIEntrySelectedEvent.Handler> getType() {
-		return TYPE;
-	}
+    }
 
-	public UIEntry getEntry() {
-		return entry;
-	}
+    public static Type<UIEntrySelectedEvent.Handler> getType() {
+        return TYPE;
+    }
+
+    public UIEntry getEntry() {
+        return entry;
+    }
 }

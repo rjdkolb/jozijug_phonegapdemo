@@ -37,8 +37,8 @@ import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListView;
 import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIView;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIViewImpl;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationView;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationViewGwtImpl;
+import com.googlecode.mgwt.examples.showcase.client.activities.testphonegap.TestPhoneGapView;
+import com.googlecode.mgwt.examples.showcase.client.activities.testphonegap.TestPhoneGapViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassDoneView;
 import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselView;
@@ -61,7 +61,7 @@ public class ClientFactoryImpl implements ClientFactory {
     private ShowCaseListView homeViewImpl;
     private UIView uiView;
     private AboutView aboutView;
-    private AnimationView animationView;
+    private TestPhoneGapView animationView;
     private VerifyCompassDoneView verifyCompassDoneView;
     private ElementsView elementsView;
     private FormsViewGwtImpl formsView;
@@ -136,9 +136,9 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public AnimationView getAnimationView() {
+    public TestPhoneGapView getAnimationView() {
         if (animationView == null) {
-            animationView = new AnimationViewGwtImpl();
+            animationView = new TestPhoneGapViewGwtImpl();
         }
         return animationView;
     }
@@ -197,6 +197,7 @@ public class ClientFactoryImpl implements ClientFactory {
         phoneGap.getCompass().clearWatcher(watcher);
     }
     //--------------------
+
     @Override
     public GeolocationWatcher watchGPS(GeolocationCallback callBack) {
         return phoneGap.getGeolocation().watchPosition(new GeolocationOptions(), callBack);
@@ -209,5 +210,4 @@ public class ClientFactoryImpl implements ClientFactory {
         }
         phoneGap.getGeolocation().clearWatch(watcher);
     }
-    
 }

@@ -23,8 +23,8 @@ import com.googlecode.mgwt.examples.showcase.client.activities.AboutPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.testphonegap.TestPhoneGapActivity;
+import com.googlecode.mgwt.examples.showcase.client.activities.testphonegap.TestPhoneGapPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.compass.CompassFunctionalityVerfiedActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselActivity;
@@ -39,61 +39,61 @@ import com.googlecode.mgwt.examples.showcase.client.places.HomePlace;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class PhoneActivityMapper implements ActivityMapper {
 
-	private final ClientFactory clientFactory;
+    private final ClientFactory clientFactory;
 
-	public PhoneActivityMapper(ClientFactory clientFactory) {
-		this.clientFactory = clientFactory;
-	}
+    public PhoneActivityMapper(ClientFactory clientFactory) {
+        this.clientFactory = clientFactory;
+    }
 
-	@Override
-	public Activity getActivity(Place place) {
-		if (place instanceof HomePlace) {
-			return new ShowCaseListActivity(clientFactory);
-		}
+    @Override
+    public Activity getActivity(Place place) {
+        if (place instanceof HomePlace) {
+            return new ShowCaseListActivity(clientFactory);
+        }
 
-		if (place instanceof UIPlace) {
-			return new UIActivity(clientFactory);
-		}
+        if (place instanceof UIPlace) {
+            return new UIActivity(clientFactory);
+        }
 
-		if (place instanceof AboutPlace) {
-			return new AboutActivity(clientFactory);
-		}
+        if (place instanceof AboutPlace) {
+            return new AboutActivity(clientFactory);
+        }
 
-		if (place instanceof AnimationPlace) {
-			return new AnimationActivity(clientFactory);
-		}
-
-
-
-		if (place instanceof ElementsPlace) {
-			return new ElementsActivity(clientFactory);
-		}
-
-		if (place instanceof FormsPlace) {
-			return new FormsActivity(clientFactory);
-		}
+        if (place instanceof TestPhoneGapPlace) {
+            return new TestPhoneGapActivity(clientFactory);
+        }
 
 
 
+        if (place instanceof ElementsPlace) {
+            return new ElementsActivity(clientFactory);
+        }
 
-		
+        if (place instanceof FormsPlace) {
+            return new FormsActivity(clientFactory);
+        }
 
-	
-		if (place instanceof CarouselPlace) {
-			return new CarouselActivity(clientFactory);
-		}
 
-                if (place instanceof VerifyGPSPlace ) {
-                    return new GPSFunctionalityVerfiedActivity(clientFactory);
-                }
 
-		if (place instanceof VerifyCompassPlace ) {
-			return new CompassFunctionalityVerfiedActivity(clientFactory);
-		}
-		return new ShowCaseListActivity(clientFactory);
-	}
+
+
+
+
+        if (place instanceof CarouselPlace) {
+            return new CarouselActivity(clientFactory);
+        }
+
+        if (place instanceof VerifyGPSPlace) {
+            return new GPSFunctionalityVerfiedActivity(clientFactory);
+        }
+
+        if (place instanceof VerifyCompassPlace) {
+            return new CompassFunctionalityVerfiedActivity(clientFactory);
+        }
+        return new ShowCaseListActivity(clientFactory);
+    }
 }

@@ -22,27 +22,26 @@ import com.googlecode.mgwt.examples.showcase.client.DetailActivity;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class CarouselActivity extends DetailActivity {
 
-	private final ClientFactory clientFactory;
+    private final ClientFactory clientFactory;
 
-	public CarouselActivity(ClientFactory clientFactory) {
-		super(clientFactory.getCarouselHorizontalView(), "nav");
-		this.clientFactory = clientFactory;
-	}
+    public CarouselActivity(ClientFactory clientFactory) {
+        super(clientFactory.getCarouselHorizontalView(), "nav");
+        this.clientFactory = clientFactory;
+    }
 
-	@Override
-	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		super.start(panel, eventBus);
-		final CarouselView view = clientFactory.getCarouselHorizontalView();
+    @Override
+    public void start(AcceptsOneWidget panel, EventBus eventBus) {
+        super.start(panel, eventBus);
+        final CarouselView view = clientFactory.getCarouselHorizontalView();
 
-		view.getBackbuttonText().setText("UI");
-		view.getMainButtonText().setText("Nav");
-		view.getHeader().setText("Carousel");
+        view.getBackbuttonText().setText("UI");
+        view.getMainButtonText().setText("Nav");
+        view.getHeader().setText("Carousel");
 
-		panel.setWidget(view);
-	}
-
+        panel.setWidget(view);
+    }
 }

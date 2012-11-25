@@ -13,42 +13,27 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.googlecode.mgwt.examples.showcase.client.activities.animation;
+package com.googlecode.mgwt.examples.showcase.client.activities.testphonegap;
+
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceTokenizer;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
-public class Animation {
-	private String name;
-	private AnimationNames animationName;
+public class TestPhoneGapPlace extends Place {
 
-	public enum AnimationNames {
-		SLIDE, SLIDE_UP, DISSOLVE, FADE, FLIP, POP, SWAP;
+    public static class TestPhoneGapPlaceTokenizer implements PlaceTokenizer<TestPhoneGapPlace> {
 
-	}
+        @Override
+        public TestPhoneGapPlace getPlace(String token) {
+            return new TestPhoneGapPlace();
+        }
 
-	@SuppressWarnings("unused")
-	private Animation() {
-
-	}
-
-	public Animation(AnimationNames animationName, String displayName) {
-		this.animationName = animationName;
-		this.name = displayName;
-
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public AnimationNames getAnimationName() {
-		return animationName;
-	}
-
+        @Override
+        public String getToken(TestPhoneGapPlace place) {
+            return "";
+        }
+    }
 }

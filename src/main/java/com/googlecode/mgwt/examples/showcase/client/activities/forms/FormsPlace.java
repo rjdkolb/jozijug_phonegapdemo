@@ -19,17 +19,17 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class FormsPlace extends Place {
-	public static class Tokenizer implements PlaceTokenizer<FormsPlace> {
 
-		@Override
-		public FormsPlace getPlace(String token) {
-			return new FormsPlace();
-		}
+    public static class Tokenizer implements PlaceTokenizer<FormsPlace> {
 
-		@Override
-		public String getToken(FormsPlace place) {
-			return "";
-		}
+        @Override
+        public FormsPlace getPlace(String token) {
+            return new FormsPlace();
+        }
 
-	}
+        @Override
+        public String getToken(FormsPlace place) {
+            return "";
+        }
+    }
 }

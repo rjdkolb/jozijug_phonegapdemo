@@ -23,17 +23,17 @@ import com.google.gwt.place.shared.PlaceTokenizer;
  *
  */
 public class ElementsPlace extends Place {
-	public static class ElementsPlaceTokenizer implements PlaceTokenizer<ElementsPlace> {
 
-		@Override
-		public ElementsPlace getPlace(String token) {
-			return new ElementsPlace();
-		}
+    public static class ElementsPlaceTokenizer implements PlaceTokenizer<ElementsPlace> {
 
-		@Override
-		public String getToken(ElementsPlace place) {
-			return "";
-		}
+        @Override
+        public ElementsPlace getPlace(String token) {
+            return new ElementsPlace();
+        }
 
-	}
+        @Override
+        public String getToken(ElementsPlace place) {
+            return "";
+        }
+    }
 }

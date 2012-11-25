@@ -25,7 +25,7 @@ import com.googlecode.gwtphonegap.client.geolocation.GeolocationWatcher;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutView;
 import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListView;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIView;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationView;
+import com.googlecode.mgwt.examples.showcase.client.activities.testphonegap.TestPhoneGapView;
 import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassDoneView;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselView;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsView;
@@ -51,7 +51,7 @@ public interface ClientFactory {
 
     public AboutView getAboutView();
 
-    public AnimationView getAnimationView();
+    public TestPhoneGapView getAnimationView();
 
     public VerifyCompassDoneView getVerifyCompassDoneView();
 

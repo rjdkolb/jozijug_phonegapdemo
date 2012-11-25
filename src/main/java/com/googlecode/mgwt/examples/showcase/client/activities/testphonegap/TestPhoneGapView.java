@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.googlecode.mgwt.examples.showcase.client.activities.animation;
+package com.googlecode.mgwt.examples.showcase.client.activities.testphonegap;
 
 import java.util.List;
 
@@ -24,21 +24,21 @@ import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 import com.googlecode.mgwt.examples.showcase.client.activities.home.Topic;
 import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 
-
 /**
  * @author Daniel Kurka
  *
  */
-public interface AnimationView extends IsWidget , CompassCallback{
-	public void setTitle(String text);
+public interface TestPhoneGapView extends IsWidget, CompassCallback {
 
-	public void setLeftButtonText(String text);
+    public void setTitle(String text);
 
-	public HasTapHandlers getBackButton();
+    public void setLeftButtonText(String text);
 
-	public HasCellSelectedHandler getCellSelectedHandler();
+    public HasTapHandlers getBackButton();
 
-	public void setAnimations(List<Topic> animations);
+    public HasCellSelectedHandler getCellSelectedHandler();
 
-	public HasText getFirstHeader();
+    public void setAnimations(List<Topic> animations);
+
+    public HasText getFirstHeader();
 }

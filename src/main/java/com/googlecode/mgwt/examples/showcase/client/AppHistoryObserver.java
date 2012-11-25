@@ -9,9 +9,9 @@ import com.googlecode.mgwt.examples.showcase.client.activities.AboutPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIEntrySelectedEvent;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIEntrySelectedEvent.UIEntry;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.testphonegap.TestPhoneGapPlace;
 
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.TopicSelectedEvent;
+import com.googlecode.mgwt.examples.showcase.client.activities.testphonegap.TopicSelectedEvent;
 import com.googlecode.mgwt.examples.showcase.client.activities.compass.VerifyCompassPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace;
@@ -52,15 +52,15 @@ public class AppHistoryObserver implements HistoryObserver {
 
         HandlerRegistration addHandler = eventBus.addHandler(TopicSelectedEvent.getType(), new TopicSelectedEvent.Handler() {
             @Override
-            public void onAnimationSelected(TopicSelectedEvent event) {
+            public void onTopicSelectedEventSelected(TopicSelectedEvent event) {
 
                 Topic topic = event.getTopic();
 
-                int animationName = topic.getCount();
+                int topicIndex = topic.getCount();
 
                 Place place = null;
 
-                switch (animationName) {
+                switch (topicIndex) {
                     case 1:
                         place = new VerifyCompassPlace();
 
@@ -139,7 +139,7 @@ public class AppHistoryObserver implements HistoryObserver {
                 if (MGWT.getOsDetection().isPhone()) {
                     History.back();
                 } else {
-                    historyHandler.goTo(new AnimationPlace(), true);
+                    historyHandler.goTo(new TestPhoneGapPlace(), true);
                 }
 
             }
@@ -154,18 +154,18 @@ public class AppHistoryObserver implements HistoryObserver {
     }
 
     private void onPhoneNav(Place place, HistoryHandler historyHandler) {
-        if (place instanceof VerifyCompassPlace) {
+        if (place instanceof VerifyCompassPlace || (place instanceof VerifyGPSPlace)) {
 
             historyHandler.replaceCurrentPlace(new HomePlace());
 
-            historyHandler.pushPlace(new AnimationPlace());
+            historyHandler.pushPlace(new TestPhoneGapPlace());
 
         } else {
             if (place instanceof AboutPlace) {
                 historyHandler.replaceCurrentPlace(new HomePlace());
 
             } else {
-                if (place instanceof AnimationPlace) {
+                if (place instanceof TestPhoneGapPlace) {
                     historyHandler.replaceCurrentPlace(new HomePlace());
                 } else {
                     if (place instanceof UIPlace) {
@@ -190,7 +190,7 @@ public class AppHistoryObserver implements HistoryObserver {
     }
 
     private void onTabletNav(Place place, HistoryHandler historyHandler) {
-        if (place instanceof VerifyCompassPlace) {
+        if (place instanceof VerifyCompassPlace || (place instanceof VerifyGPSPlace)) {
 
             historyHandler.replaceCurrentPlace(new HomePlace());
 
@@ -198,7 +198,7 @@ public class AppHistoryObserver implements HistoryObserver {
             if (place instanceof AboutPlace) {
                 historyHandler.replaceCurrentPlace(new HomePlace());
             } else {
-                if (place instanceof AnimationPlace) {
+                if (place instanceof TestPhoneGapPlace) {
                     historyHandler.replaceCurrentPlace(new HomePlace());
                 } else {
                     if (place instanceof UIPlace) {

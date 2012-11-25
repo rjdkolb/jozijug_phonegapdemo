@@ -13,12 +13,15 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.googlecode.mgwt.examples.showcase.client.activities;
+package com.googlecode.mgwt.examples.showcase.client.activities.testphonegap;
 
 import java.util.List;
 
 import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import com.googlecode.gwtphonegap.client.compass.CompassError;
+import com.googlecode.gwtphonegap.client.compass.CompassHeading;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 import com.googlecode.mgwt.examples.showcase.client.BasicCell;
 import com.googlecode.mgwt.examples.showcase.client.activities.home.Topic;
@@ -34,26 +37,35 @@ import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
  * @author Daniel Kurka
  *
  */
-public class ShowCaseListViewGwtImpl implements ShowCaseListView {
+public class TestPhoneGapViewGwtImpl implements TestPhoneGapView {
 
+    private CellListWithHeader<Topic> list;
     private LayoutPanel main;
-    private HeaderButton forwardButton;
     private HeaderPanel headerPanel;
-    private CellListWithHeader<Topic> cellList;
+    private HeaderButton headerBackButton;
+    private Label compass = new Label("Compass");
 
-    public ShowCaseListViewGwtImpl() {
+    /**
+     *
+     */
+    public TestPhoneGapViewGwtImpl() {
         main = new LayoutPanel();
 
         headerPanel = new HeaderPanel();
 
-        forwardButton = new HeaderButton();
-        forwardButton.setForwardButton(true);
-        if (MGWT.getOsDetection().isPhone()) {
-            headerPanel.setRightWidget(forwardButton);
-        }
+        headerBackButton = new HeaderButton();
+
+        headerPanel.setLeftWidget(headerBackButton);
+        headerBackButton.setBackButton(true);
+        headerBackButton.setVisible(!MGWT.getOsDetection().isAndroid());
+
         main.add(headerPanel);
 
-        cellList = new CellListWithHeader<Topic>(new BasicCell<Topic>() {
+        main.add(compass);
+
+        ScrollPanel scrollPanel = new ScrollPanel();
+
+        list = new CellListWithHeader<Topic>(new BasicCell<Topic>() {
             @Override
             public String getDisplayString(Topic model) {
                 return model.getName();
@@ -65,11 +77,11 @@ public class ShowCaseListViewGwtImpl implements ShowCaseListView {
             }
         });
 
-        cellList.getCellList().setRound(true);
+        list.getCellList().setRound(true);
 
-        ScrollPanel scrollPanel = new ScrollPanel();
-        scrollPanel.setWidget(cellList);
+        scrollPanel.setWidget(list);
         scrollPanel.setScrollingEnabledX(false);
+
         main.add(scrollPanel);
 
     }
@@ -86,29 +98,39 @@ public class ShowCaseListViewGwtImpl implements ShowCaseListView {
     }
 
     @Override
-    public void setRightButtonText(String text) {
-        forwardButton.setText(text);
-
-    }
-
-    @Override
-    public HasTapHandlers getAboutButton() {
-        return forwardButton;
+    public HasTapHandlers getBackButton() {
+        return headerBackButton;
     }
 
     @Override
     public HasCellSelectedHandler getCellSelectedHandler() {
-        return cellList.getCellList();
+        return list.getCellList();
     }
 
     @Override
-    public void setTopics(List<Topic> createTopicsList) {
-        cellList.getCellList().render(createTopicsList);
+    public void setLeftButtonText(String text) {
+        headerBackButton.setText(text);
+
+    }
+
+    @Override
+    public void setAnimations(List<Topic> animations) {
+        list.getCellList().render(animations);
 
     }
 
     @Override
     public HasText getFirstHeader() {
-        return cellList.getHeader();
+        return list.getHeader();
+    }
+
+    @Override
+    public void onError(CompassError error) {
+        compass.setText("Compass Error " + error.toString());
+    }
+
+    @Override
+    public void onSuccess(CompassHeading heading) {
+        compass.setText("Compass Success " + heading.toString());
     }
 }

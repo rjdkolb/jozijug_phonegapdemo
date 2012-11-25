@@ -24,17 +24,17 @@ import com.google.gwt.place.shared.PlaceTokenizer;
  *
  */
 public class VerifyGPSPlace extends Place {
-	public static class VerifyGPSTokenizer implements PlaceTokenizer<VerifyGPSPlace> {
 
-		@Override
-		public VerifyGPSPlace getPlace(String token) {
-			return new VerifyGPSPlace();
-		}
+    public static class VerifyGPSTokenizer implements PlaceTokenizer<VerifyGPSPlace> {
 
-		@Override
-		public String getToken(VerifyGPSPlace place) {
-			return "";
-		}
+        @Override
+        public VerifyGPSPlace getPlace(String token) {
+            return new VerifyGPSPlace();
+        }
 
-	}
+        @Override
+        public String getToken(VerifyGPSPlace place) {
+            return "";
+        }
+    }
 }

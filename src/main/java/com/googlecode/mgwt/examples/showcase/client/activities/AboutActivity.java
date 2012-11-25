@@ -26,40 +26,38 @@ import com.googlecode.mgwt.examples.showcase.client.event.ActionNames;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class AboutActivity extends DetailActivity {
 
-	private final ClientFactory clientFactory;
+    private final ClientFactory clientFactory;
 
-	public AboutActivity(ClientFactory clientFactory) {
-		super(clientFactory.getAboutView(), "nav");
-		this.clientFactory = clientFactory;
+    public AboutActivity(ClientFactory clientFactory) {
+        super(clientFactory.getAboutView(), "nav");
+        this.clientFactory = clientFactory;
 
-	}
+    }
 
-	@Override
-	public void start(AcceptsOneWidget panel, final EventBus eventBus) {
-		super.start(panel, eventBus);
-		AboutView aboutView = clientFactory.getAboutView();
+    @Override
+    public void start(AcceptsOneWidget panel, final EventBus eventBus) {
+        super.start(panel, eventBus);
+        AboutView aboutView = clientFactory.getAboutView();
 
-		aboutView.getBackbuttonText().setText("Home");
+        aboutView.getBackbuttonText().setText("Home");
 
-		aboutView.getHeader().setText("About");
+        aboutView.getHeader().setText("About");
 
-		aboutView.getMainButtonText().setText("Nav");
+        aboutView.getMainButtonText().setText("Nav");
 
-		addHandlerRegistration(aboutView.getBackbutton().addTapHandler(new TapHandler() {
+        addHandlerRegistration(aboutView.getBackbutton().addTapHandler(new TapHandler() {
+            @Override
+            public void onTap(TapEvent event) {
+                ActionEvent.fire(eventBus, ActionNames.BACK);
 
-			@Override
-			public void onTap(TapEvent event) {
-				ActionEvent.fire(eventBus, ActionNames.BACK);
+            }
+        }));
 
-			}
-		}));
+        panel.setWidget(aboutView);
 
-		panel.setWidget(aboutView);
-
-	}
-
+    }
 }

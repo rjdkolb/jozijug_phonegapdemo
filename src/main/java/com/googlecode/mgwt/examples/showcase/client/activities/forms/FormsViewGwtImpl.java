@@ -25,30 +25,31 @@ import com.googlecode.mgwt.ui.client.widget.MTextBox;
 import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
 public class FormsViewGwtImpl extends DetailViewGwtImpl implements FormsView {
-	public FormsViewGwtImpl() {
 
-		FlowPanel container = new FlowPanel();
+    public FormsViewGwtImpl() {
 
-		HTML header = new HTML("Contact Data");
-		header.addStyleName(MGWTStyle.getTheme().getMGWTClientBundle().getListCss().listHeader());
+        FlowPanel container = new FlowPanel();
 
-		container.add(header);
+        HTML header = new HTML("Contact Data");
+        header.addStyleName(MGWTStyle.getTheme().getMGWTClientBundle().getListCss().listHeader());
 
-		WidgetList widgetList = new WidgetList();
-		widgetList.setRound(true);
+        container.add(header);
 
-		// lets put in some widgets
-		widgetList.add(new FormListEntry("Firstname", new MTextBox()));
-		widgetList.add(new FormListEntry("Lastname", new MTextBox()));
-		widgetList.add(new FormListEntry("Job Title", new MTextBox()));
+        WidgetList widgetList = new WidgetList();
+        widgetList.setRound(true);
 
-		container.add(widgetList);
+        // lets put in some widgets
+        widgetList.add(new FormListEntry("Firstname", new MTextBox()));
+        widgetList.add(new FormListEntry("Lastname", new MTextBox()));
+        widgetList.add(new FormListEntry("Job Title", new MTextBox()));
 
-		scrollPanel.setScrollingEnabledX(false);
-		scrollPanel.setWidget(container);
-		// workaround for android formfields jumping around when using
-		// -webkit-transform
-		scrollPanel.setUsePos(MGWT.getOsDetection().isAndroid());
+        container.add(widgetList);
 
-	}
+        scrollPanel.setScrollingEnabledX(false);
+        scrollPanel.setWidget(container);
+        // workaround for android formfields jumping around when using
+        // -webkit-transform
+        scrollPanel.setUsePos(MGWT.getOsDetection().isAndroid());
+
+    }
 }

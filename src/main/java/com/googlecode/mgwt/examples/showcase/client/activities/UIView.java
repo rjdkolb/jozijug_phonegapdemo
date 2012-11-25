@@ -21,21 +21,21 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 
-
 /**
  * @author Daniel Kurka
  *
  */
 public interface UIView extends IsWidget {
-	public void setBackButtonText(String text);
 
-	public HasTapHandlers getBackButton();
+    public void setBackButtonText(String text);
 
-	public void setTitle(String title);
+    public HasTapHandlers getBackButton();
 
-	public HasCellSelectedHandler getList();
+    public void setTitle(String title);
 
-	public void renderItems(List<Item> items);
+    public HasCellSelectedHandler getList();
 
-	public void setSelectedIndex(int index, boolean selected);
+    public void renderItems(List<Item> items);
+
+    public void setSelectedIndex(int index, boolean selected);
 }

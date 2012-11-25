@@ -11,17 +11,22 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.googlecode.mgwt.examples.showcase.client.activities;
+package com.googlecode.mgwt.examples.showcase.client.activities.testphonegap;
 
+import com.google.gwt.core.shared.GWT;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
+import com.googlecode.gwtphonegap.client.compass.CompassCallback;
+import com.googlecode.gwtphonegap.client.compass.CompassError;
+import com.googlecode.gwtphonegap.client.compass.CompassHeading;
+import com.googlecode.gwtphonegap.client.compass.CompassWatcher;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
-import com.googlecode.mgwt.examples.showcase.client.activities.UIEntrySelectedEvent.UIEntry;
+import com.googlecode.mgwt.examples.showcase.client.activities.home.Topic;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionEvent;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionNames;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
@@ -32,23 +37,40 @@ import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
  * @author Daniel Kurka
  *
  */
-public class UIActivity extends MGWTAbstractActivity {
+public class TestPhoneGapActivity extends MGWTAbstractActivity {
 
     private final ClientFactory clientFactory;
-    private int oldIndex;
-    private List<Item> items;
+    private List<Topic> animations;
+    private CompassWatcher compassWatcher;
 
-    public UIActivity(ClientFactory clientFactory) {
+    /**
+     *
+     */
+    public TestPhoneGapActivity(ClientFactory clientFactory) {
         this.clientFactory = clientFactory;
 
     }
 
     @Override
     public void start(AcceptsOneWidget panel, final EventBus eventBus) {
-        final UIView view = clientFactory.getUIView();
+        TestPhoneGapView view = clientFactory.getAnimationView();
 
-        view.setBackButtonText("Home");
-        view.setTitle("UI");
+        clientFactory.watchHeading(new CompassCallback() {
+            @Override
+            public void onError(CompassError error) {
+                GWT.log(error.toString());
+            }
+
+            @Override
+            public void onSuccess(CompassHeading heading) {
+                //TopicSelectedEvent.fire(eventBus, heading);
+            }
+        });
+
+        view.setLeftButtonText("Home");
+        view.setTitle("Animation");
+        animations = createAnimations();
+        view.setAnimations(animations);
 
         addHandlerRegistration(view.getBackButton().addTapHandler(new TapHandler() {
             @Override
@@ -57,19 +79,15 @@ public class UIActivity extends MGWTAbstractActivity {
 
             }
         }));
-        items = createItems();
-        view.renderItems(items);
 
-        addHandlerRegistration(view.getList().addCellSelectedHandler(new CellSelectedHandler() {
+        addHandlerRegistration(view.getCellSelectedHandler().addCellSelectedHandler(
+                new CellSelectedHandler() {
             @Override
             public void onCellSelected(CellSelectedEvent event) {
                 int index = event.getIndex();
 
-                view.setSelectedIndex(oldIndex, false);
-                view.setSelectedIndex(index, true);
-                oldIndex = index;
 
-                UIEntrySelectedEvent.fire(eventBus, items.get(index).getEntry());
+                TopicSelectedEvent.fire(eventBus, animations.get(index));
 
             }
         }));
@@ -78,16 +96,20 @@ public class UIActivity extends MGWTAbstractActivity {
 
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        clientFactory.clearWatchHeading(compassWatcher);
+    }
+
     /**
      * @return
      */
-    private List<Item> createItems() {
-        ArrayList<Item> list = new ArrayList<Item>();
+    private List<Topic> createAnimations() {
+        ArrayList<Topic> list = new ArrayList<Topic>();
 
-        list.add(new Item("Carousel", UIEntry.CAROUSEL));
-        list.add(new Item("Elements", UIEntry.ELEMENTS));
-        list.add(new Item("Forms", UIEntry.FORMS));
-
+        list.add(new Topic("Verify Compass", 1));
+        list.add(new Topic("Verify GPS", 2));
         return list;
     }
 }
