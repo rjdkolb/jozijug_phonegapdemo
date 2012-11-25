@@ -1,10 +1,19 @@
-mgwt
-============
+mgwt and gwt-phonegap
+========================
 
 mgwt is an open source mobile widget frame work for GWT, see http://www.m-gwt.com
+gwt-phonegap http://code.google.com/p/gwt-phonegap/
 
 This has been altered by Richard Kolb for a demo to the JoziJUG
 (Most of this source code is still from the original author)
 Repackaged so a nice archetype can be created
+
+To get started
+========================
+
+1) checkout source
+2) run mvn package
+3) run mvn gwt:run (two commands for Superdev mode to work)
+
 
 
