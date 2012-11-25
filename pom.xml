@@ -62,7 +62,7 @@
                 <executions>
                     <execution>
                         <configuration>
-                            <module>com.googlecode.mgwt.examples.showcase.ShowCase</module>
+                            <module>org.openrap.jozijug.mgwtphonegap.PhoneGapModule</module>
                             <runTarget>index.html</runTarget>
                             <copyWebapp>true</copyWebapp>
                         </configuration>

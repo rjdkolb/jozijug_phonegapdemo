@@ -4,5 +4,7 @@ mgwt
 mgwt is an open source mobile widget frame work for GWT, see http://www.m-gwt.com
 
 This has been altered by Richard Kolb for a demo to the JoziJUG
+(Most of this source code is still from the original author)
+Repackaged so a nice archetype can be created
 
 
