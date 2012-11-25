@@ -16,7 +16,10 @@
 package com.googlecode.mgwt.examples.showcase.client.activities.animationdone;
 
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import com.googlecode.gwtphonegap.client.compass.CompassError;
+import com.googlecode.gwtphonegap.client.compass.CompassHeading;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 import com.googlecode.mgwt.ui.client.widget.Button;
 import com.googlecode.mgwt.ui.client.widget.RoundPanel;
@@ -25,22 +28,22 @@ import com.googlecode.mgwt.ui.client.widget.RoundPanel;
  * @author Daniel Kurka
  * 
  */
-public class AnimationDoneViewGwtImpl implements AnimationDoneView {
+public class VerifyPhoneGapDoneViewGwtImpl implements VerifyPhoneGapDoneView {
 
 	private RoundPanel panel;
 	private Button button;
-
+        Label compassLabel = new Label();
 	/**
 	 * 
 	 */
-	public AnimationDoneViewGwtImpl() {
+	public VerifyPhoneGapDoneViewGwtImpl() {
 		panel = new RoundPanel();
 		panel.getElement().setAttribute("style", "text-align:center");
 		panel.setHeight("200px");
 
-		HTML html = new HTML("<p style='text-align: center; position: relative; top: 75px; font-size: 20px'>great, yeah!<p>");
+		
 
-		panel.add(html);
+		panel.add(compassLabel);
 
 		button = new Button();
 		button.getElement().setAttribute("style", "margin:auto;width: 200px; top: 125px; position:relative;");
@@ -59,5 +62,15 @@ public class AnimationDoneViewGwtImpl implements AnimationDoneView {
 	public HasTapHandlers getBackButton() {
 		return button;
 	}
+
+    @Override
+    public void onError(CompassError error) {
+        compassLabel.setText("Error "+error.toString());
+    }
+
+    @Override
+    public void onSuccess(CompassHeading heading) {
+        compassLabel.setText("Success "+heading.getTimeStamp() + " "+heading.getMagneticHeading());
+    }
 
 }

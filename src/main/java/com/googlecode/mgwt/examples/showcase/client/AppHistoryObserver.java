@@ -9,20 +9,14 @@ import com.googlecode.mgwt.examples.showcase.client.activities.AboutPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIEntrySelectedEvent;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIEntrySelectedEvent.UIEntry;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.Animation;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.Animation.AnimationNames;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationSelectedEvent;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDissolvePlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationFadePlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationFlipPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationPopPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlidePlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlideUpPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSwapPlace;
+
+import com.googlecode.mgwt.examples.showcase.client.activities.animation.TopicSelectedEvent;
+import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyCompassPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.home.Topic;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionEvent;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionNames;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace;
@@ -32,229 +26,194 @@ import com.googlecode.mgwt.ui.client.MGWT;
 
 public class AppHistoryObserver implements HistoryObserver {
 
-	@Override
-	public void onPlaceChange(Place place, HistoryHandler handler) {
+    @Override
+    public void onPlaceChange(Place place, HistoryHandler handler) {
+    }
 
-	}
+    @Override
+    public void onHistoryChanged(Place place, HistoryHandler handler) {
+    }
 
-	@Override
-	public void onHistoryChanged(Place place, HistoryHandler handler) {
+    @Override
+    public void onAppStarted(Place place, HistoryHandler historyHandler) {
+        if (MGWT.getOsDetection().isPhone()) {
+            onPhoneNav(place, historyHandler);
+        } else {
+            // tablet
+            onTabletNav(place, historyHandler);
 
-	}
+        }
 
-	@Override
-	public void onAppStarted(Place place, HistoryHandler historyHandler) {
-		if (MGWT.getOsDetection().isPhone()) {
-			onPhoneNav(place, historyHandler);
-		} else {
-			// tablet
-			onTabletNav(place, historyHandler);
+    }
 
-		}
+    @Override
+    public HandlerRegistration bind(EventBus eventBus, final HistoryHandler historyHandler) {
 
-	}
+        HandlerRegistration addHandler = eventBus.addHandler(TopicSelectedEvent.getType(), new TopicSelectedEvent.Handler() {
+            @Override
+            public void onAnimationSelected(TopicSelectedEvent event) {
 
-	@Override
-	public HandlerRegistration bind(EventBus eventBus, final HistoryHandler historyHandler) {
+                Topic topic = event.getTopic();
 
-		HandlerRegistration addHandler = eventBus.addHandler(AnimationSelectedEvent.getType(), new AnimationSelectedEvent.Handler() {
+                int animationName = topic.getCount();
 
-			@Override
-			public void onAnimationSelected(AnimationSelectedEvent event) {
+                Place place = null;
 
-				Animation animation = event.getAnimation();
+                switch (animationName) {
+                    case 0:
+                        place = new VerifyCompassPlace();
 
-				AnimationNames animationName = animation.getAnimationName();
+                        break;
 
-				Place place = null;
 
-				switch (animationName) {
-				case SLIDE:
-					place = new AnimationSlidePlace();
+                    default:
+                        // TODO log
+                        place = new VerifyCompassPlace();
+                        break;
+                }
 
-					break;
-				case SLIDE_UP:
-					place = new AnimationSlideUpPlace();
+                if (MGWT.getOsDetection().isTablet()) {
 
-					break;
-				case DISSOLVE:
-					place = new AnimationDissolvePlace();
+                    historyHandler.replaceCurrentPlace(place);
+                    historyHandler.goTo(place, true);
+                } else {
+                    historyHandler.goTo(place);
+                }
 
-					break;
-				case FADE:
-					place = new AnimationFadePlace();
+            }
+        });
+        HandlerRegistration register3 = UIEntrySelectedEvent.register(eventBus, new UIEntrySelectedEvent.Handler() {
+            @Override
+            public void onAnimationSelected(UIEntrySelectedEvent event) {
 
-					break;
-				case FLIP:
-					place = new AnimationFlipPlace();
+                UIEntry entry = event.getEntry();
 
-					break;
-				case POP:
-					place = new AnimationPopPlace();
+                Place place = null;
 
-					break;
-				case SWAP:
-					place = new AnimationSwapPlace();
+                switch (entry) {
 
-					break;
-
-				default:
-					// TODO log
-					place = new AnimationSlidePlace();
-					break;
-				}
-
-				if (MGWT.getOsDetection().isTablet()) {
-
-					historyHandler.replaceCurrentPlace(place);
-					historyHandler.goTo(place, true);
-				} else {
-					historyHandler.goTo(place);
-				}
-
-			}
-		});
-		HandlerRegistration register3 = UIEntrySelectedEvent.register(eventBus, new UIEntrySelectedEvent.Handler() {
-
-			@Override
-			public void onAnimationSelected(UIEntrySelectedEvent event) {
-
-				UIEntry entry = event.getEntry();
-
-				Place place = null;
-
-				switch (entry) {
-
-				case ELEMENTS:
-					place = new ElementsPlace();
-					break;
-				case FORMS:
-					place = new FormsPlace();
-					break;
+                    case ELEMENTS:
+                        place = new ElementsPlace();
+                        break;
+                    case FORMS:
+                        place = new FormsPlace();
+                        break;
 
 
 
-				case CAROUSEL:
-					place = new CarouselPlace();
-					break;
+                    case CAROUSEL:
+                        place = new CarouselPlace();
+                        break;
 
-				default:
-					break;
-				}
+                    default:
+                        break;
+                }
 
-				if (MGWT.getOsDetection().isTablet()) {
+                if (MGWT.getOsDetection().isTablet()) {
 
-					historyHandler.replaceCurrentPlace(place);
-					historyHandler.goTo(place, true);
-				} else {
-					historyHandler.goTo(place);
-				}
+                    historyHandler.replaceCurrentPlace(place);
+                    historyHandler.goTo(place, true);
+                } else {
+                    historyHandler.goTo(place);
+                }
 
-			}
-		});
+            }
+        });
 
-		HandlerRegistration register2 = ActionEvent.register(eventBus, ActionNames.BACK, new ActionEvent.Handler() {
+        HandlerRegistration register2 = ActionEvent.register(eventBus, ActionNames.BACK, new ActionEvent.Handler() {
+            @Override
+            public void onAction(ActionEvent event) {
 
-			@Override
-			public void onAction(ActionEvent event) {
+                History.back();
 
-				History.back();
+            }
+        });
 
-			}
-		});
+        HandlerRegistration register = ActionEvent.register(eventBus, ActionNames.ANIMATION_END, new ActionEvent.Handler() {
+            @Override
+            public void onAction(ActionEvent event) {
+                if (MGWT.getOsDetection().isPhone()) {
+                    History.back();
+                } else {
+                    historyHandler.goTo(new AnimationPlace(), true);
+                }
 
-		HandlerRegistration register = ActionEvent.register(eventBus, ActionNames.ANIMATION_END, new ActionEvent.Handler() {
+            }
+        });
 
-			@Override
-			public void onAction(ActionEvent event) {
-				if (MGWT.getOsDetection().isPhone()) {
-					History.back();
-				} else {
-					historyHandler.goTo(new AnimationPlace(), true);
-				}
+        HandlerRegistrationCollection col = new HandlerRegistrationCollection();
+        col.addHandlerRegistration(register);
+        col.addHandlerRegistration(register2);
+        col.addHandlerRegistration(register3);
+        col.addHandlerRegistration(addHandler);
+        return col;
+    }
 
-			}
-		});
+    private void onPhoneNav(Place place, HistoryHandler historyHandler) {
+        if (place instanceof VerifyCompassPlace) {
 
-		HandlerRegistrationCollection col = new HandlerRegistrationCollection();
-		col.addHandlerRegistration(register);
-		col.addHandlerRegistration(register2);
-		col.addHandlerRegistration(register3);
-		col.addHandlerRegistration(addHandler);
-		return col;
-	}
+            historyHandler.replaceCurrentPlace(new HomePlace());
 
-	private void onPhoneNav(Place place, HistoryHandler historyHandler) {
-		if (place instanceof AnimationDissolvePlace || place instanceof AnimationFadePlace || place instanceof AnimationFlipPlace || place instanceof AnimationPopPlace
-				|| place instanceof AnimationSlidePlace || place instanceof AnimationSlideUpPlace || place instanceof AnimationSwapPlace) {
+            historyHandler.pushPlace(new AnimationPlace());
 
-			historyHandler.replaceCurrentPlace(new HomePlace());
+        } else {
+            if (place instanceof AboutPlace) {
+                historyHandler.replaceCurrentPlace(new HomePlace());
 
-			historyHandler.pushPlace(new AnimationPlace());
+            } else {
+                if (place instanceof AnimationPlace) {
+                    historyHandler.replaceCurrentPlace(new HomePlace());
+                } else {
+                    if (place instanceof UIPlace) {
+                        historyHandler.replaceCurrentPlace(new HomePlace());
+                    } else {
+                        if (place instanceof UIPlace) {
+                            historyHandler.replaceCurrentPlace(new HomePlace());
+                        } else {
 
-		} else {
-			if (place instanceof AboutPlace) {
-				historyHandler.replaceCurrentPlace(new HomePlace());
+                            if (place instanceof CarouselPlace
+                                    || place instanceof ElementsPlace || place instanceof FormsPlace) {
+                                historyHandler.replaceCurrentPlace(new HomePlace());
 
-			} else {
-				if (place instanceof AnimationPlace) {
-					historyHandler.replaceCurrentPlace(new HomePlace());
-				} else {
-					if (place instanceof UIPlace) {
-						historyHandler.replaceCurrentPlace(new HomePlace());
-					} else {
-						if (place instanceof UIPlace) {
-							historyHandler.replaceCurrentPlace(new HomePlace());
-						} else {
+                                historyHandler.pushPlace(new UIPlace());
+                            }
 
-							if ( place instanceof CarouselPlace 
-									|| place instanceof ElementsPlace || place instanceof FormsPlace 
-									
-									) {
-								historyHandler.replaceCurrentPlace(new HomePlace());
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-								historyHandler.pushPlace(new UIPlace());
-							}
+    private void onTabletNav(Place place, HistoryHandler historyHandler) {
+        if (place instanceof VerifyCompassPlace) {
 
-						}
-					}
-				}
-			}
-		}
-	}
+            historyHandler.replaceCurrentPlace(new HomePlace());
 
-	private void onTabletNav(Place place, HistoryHandler historyHandler) {
-		if (place instanceof AnimationDissolvePlace || place instanceof AnimationFadePlace || place instanceof AnimationFlipPlace || place instanceof AnimationPopPlace
-				|| place instanceof AnimationSlidePlace || place instanceof AnimationSlideUpPlace || place instanceof AnimationSwapPlace) {
+        } else {
+            if (place instanceof AboutPlace) {
+                historyHandler.replaceCurrentPlace(new HomePlace());
+            } else {
+                if (place instanceof AnimationPlace) {
+                    historyHandler.replaceCurrentPlace(new HomePlace());
+                } else {
+                    if (place instanceof UIPlace) {
+                        historyHandler.replaceCurrentPlace(new HomePlace());
+                    } else {
+                        if (place instanceof UIPlace) {
+                            historyHandler.replaceCurrentPlace(new HomePlace());
+                        } else {
 
-			historyHandler.replaceCurrentPlace(new HomePlace());
+                            if (place instanceof CarouselPlace
+                                    || place instanceof ElementsPlace || place instanceof FormsPlace) {
+                                historyHandler.replaceCurrentPlace(new HomePlace());
 
-		} else {
-			if (place instanceof AboutPlace) {
-				historyHandler.replaceCurrentPlace(new HomePlace());
-			} else {
-				if (place instanceof AnimationPlace) {
-					historyHandler.replaceCurrentPlace(new HomePlace());
-				} else {
-					if (place instanceof UIPlace) {
-						historyHandler.replaceCurrentPlace(new HomePlace());
-					} else {
-						if (place instanceof UIPlace) {
-							historyHandler.replaceCurrentPlace(new HomePlace());
-						} else {
+                            }
 
-							if ( place instanceof CarouselPlace 
-									|| place instanceof ElementsPlace || place instanceof FormsPlace  
-									) {
-								historyHandler.replaceCurrentPlace(new HomePlace());
-
-							}
-
-						}
-					}
-				}
-			}
-		}
-	}
-
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

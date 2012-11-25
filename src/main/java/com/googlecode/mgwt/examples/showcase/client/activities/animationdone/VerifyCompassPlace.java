@@ -22,16 +22,16 @@ import com.google.gwt.place.shared.PlaceTokenizer;
  * @author Daniel Kurka
  *
  */
-public class AnimationSlidePlace extends Place {
-	public static class AnimationSlidePlaceTokenizer implements PlaceTokenizer<AnimationSlidePlace> {
+public class VerifyCompassPlace extends Place {
+	public static class VerifyCompassPlaceTokenizer implements PlaceTokenizer<VerifyCompassPlace> {
 
 		@Override
-		public AnimationSlidePlace getPlace(String token) {
-			return new AnimationSlidePlace();
+		public VerifyCompassPlace getPlace(String token) {
+			return new VerifyCompassPlace();
 		}
 
 		@Override
-		public String getToken(AnimationSlidePlace place) {
+		public String getToken(VerifyCompassPlace place) {
 			return "";
 		}
 

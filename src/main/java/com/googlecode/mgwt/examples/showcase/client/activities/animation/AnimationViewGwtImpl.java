@@ -18,9 +18,13 @@ package com.googlecode.mgwt.examples.showcase.client.activities.animation;
 import java.util.List;
 
 import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import com.googlecode.gwtphonegap.client.compass.CompassError;
+import com.googlecode.gwtphonegap.client.compass.CompassHeading;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 import com.googlecode.mgwt.examples.showcase.client.BasicCell;
+import com.googlecode.mgwt.examples.showcase.client.activities.home.Topic;
 import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
@@ -35,11 +39,13 @@ import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
  */
 public class AnimationViewGwtImpl implements AnimationView {
 
-	private CellListWithHeader<Animation> list;
+	private CellListWithHeader<Topic> list;
 	private LayoutPanel main;
 	private HeaderPanel headerPanel;
 	private HeaderButton headerBackButton;
 
+        private Label compass = new Label("Compass");
+        
 	/**
 	 * 
 	 */
@@ -55,18 +61,20 @@ public class AnimationViewGwtImpl implements AnimationView {
 		headerBackButton.setVisible(!MGWT.getOsDetection().isAndroid());
 
 		main.add(headerPanel);
+                
+                main.add(compass);
 
 		ScrollPanel scrollPanel = new ScrollPanel();
 
-		list = new CellListWithHeader<Animation>(new BasicCell<Animation>() {
+		list = new CellListWithHeader<Topic>(new BasicCell<Topic>() {
 
 			@Override
-			public String getDisplayString(Animation model) {
+			public String getDisplayString(Topic model) {
 				return model.getName();
 			}
 
 			@Override
-			public boolean canBeSelected(Animation model) {
+			public boolean canBeSelected(Topic model) {
 				return true;
 			}
 		});
@@ -108,7 +116,7 @@ public class AnimationViewGwtImpl implements AnimationView {
 	}
 
 	@Override
-	public void setAnimations(List<Animation> animations) {
+	public void setAnimations(List<Topic> animations) {
 		list.getCellList().render(animations);
 
 	}
@@ -117,5 +125,15 @@ public class AnimationViewGwtImpl implements AnimationView {
 	public HasText getFirstHeader() {
 		return list.getHeader();
 	}
+
+    @Override
+    public void onError(CompassError error) {
+        compass.setText("Compass Error "+error.toString());
+    }
+
+    @Override
+    public void onSuccess(CompassHeading heading) {
+        compass.setText("Compass Success "+heading.toString());
+    }
 
 }

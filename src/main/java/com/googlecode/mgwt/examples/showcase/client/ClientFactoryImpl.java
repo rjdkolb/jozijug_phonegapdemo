@@ -15,9 +15,19 @@
  */
 package com.googlecode.mgwt.examples.showcase.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.Window;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
+import com.googlecode.gwtphonegap.client.PhoneGap;
+import com.googlecode.gwtphonegap.client.PhoneGapAvailableEvent;
+import com.googlecode.gwtphonegap.client.PhoneGapAvailableHandler;
+import com.googlecode.gwtphonegap.client.PhoneGapTimeoutEvent;
+import com.googlecode.gwtphonegap.client.PhoneGapTimeoutHandler;
+import com.googlecode.gwtphonegap.client.compass.CompassCallback;
+import com.googlecode.gwtphonegap.client.compass.CompassOptions;
+import com.googlecode.gwtphonegap.client.compass.CompassWatcher;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutView;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListView;
@@ -26,8 +36,8 @@ import com.googlecode.mgwt.examples.showcase.client.activities.UIView;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIViewImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationView;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationViewGwtImpl;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDoneView;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDoneViewGwtImpl;
+import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyPhoneGapDoneView;
+import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyPhoneGapDoneViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselView;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsView;
@@ -37,112 +47,139 @@ import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsViewGw
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class ClientFactoryImpl implements ClientFactory {
 
-	private EventBus eventBus;
-	private PlaceController placeController;
-	private ShowCaseListView homeViewImpl;
-	private UIView uiView;
-	private AboutView aboutView;
-	private AnimationView animationView;
-	private AnimationDoneView animationDoneView;
+    private EventBus eventBus;
+    private PlaceController placeController;
+    private ShowCaseListView homeViewImpl;
+    private UIView uiView;
+    private AboutView aboutView;
+    private AnimationView animationView;
+    private VerifyPhoneGapDoneView animationDoneView;
+    private ElementsView elementsView;
+    private FormsViewGwtImpl formsView;
+    private CarouselView carouselView;
 
-	private ElementsView elementsView;
+    final PhoneGap phoneGap;
+    
+    public ClientFactoryImpl() {
+        eventBus = new SimpleEventBus();
 
+        placeController = new PlaceController(eventBus);
 
-	private FormsViewGwtImpl formsView;
-	private CarouselView carouselView;
+        homeViewImpl = new ShowCaseListViewGwtImpl();
 
+        GWT.log("About to create Phonegap");
+        phoneGap = GWT.create(PhoneGap.class);
 
-	public ClientFactoryImpl() {
-		eventBus = new SimpleEventBus();
+        phoneGap.addHandler(new PhoneGapAvailableHandler() {
+            @Override
+            public void onPhoneGapAvailable(PhoneGapAvailableEvent event) {
+                GWT.log("Success, phonegap loaded");
+                //startShowCase(phoneGap);
 
-		placeController = new PlaceController(eventBus);
+            }
+        });
 
-		homeViewImpl = new ShowCaseListViewGwtImpl();
-	}
+        phoneGap.addHandler(new PhoneGapTimeoutHandler() {
+            @Override
+            public void onPhoneGapTimeout(PhoneGapTimeoutEvent event) {
+                Window.alert("can not load phonegap " + event.toDebugString());
 
-	@Override
-	public ShowCaseListView getHomeView() {
-		if (homeViewImpl == null) {
-			homeViewImpl = new ShowCaseListViewGwtImpl();
-		}
-		return homeViewImpl;
-	}
+            }
+        });
 
-	@Override
-	public EventBus getEventBus() {
-		return eventBus;
-	}
+        phoneGap.initializePhoneGap();
 
-	@Override
-	public PlaceController getPlaceController() {
-		return placeController;
-	}
+    }
 
-	@Override
-	public UIView getUIView() {
-		if (uiView == null) {
-			uiView = new UIViewImpl();
-		}
-		return uiView;
-	}
+    @Override
+    public ShowCaseListView getHomeView() {
+        if (homeViewImpl == null) {
+            homeViewImpl = new ShowCaseListViewGwtImpl();
+        }
+        return homeViewImpl;
+    }
 
-	@Override
-	public AboutView getAboutView() {
-		if (aboutView == null) {
-			aboutView = new AboutViewGwtImpl();
-		}
+    @Override
+    public EventBus getEventBus() {
+        return eventBus;
+    }
 
-		return aboutView;
-	}
+    @Override
+    public PlaceController getPlaceController() {
+        return placeController;
+    }
 
-	@Override
-	public AnimationView getAnimationView() {
-		if (animationView == null) {
-			animationView = new AnimationViewGwtImpl();
-		}
-		return animationView;
-	}
+    @Override
+    public UIView getUIView() {
+        if (uiView == null) {
+            uiView = new UIViewImpl();
+        }
+        return uiView;
+    }
 
-	@Override
-	public AnimationDoneView getAnimationDoneView() {
-		if (animationDoneView == null) {
-			animationDoneView = new AnimationDoneViewGwtImpl();
-		}
-		return animationDoneView;
-	}
+    @Override
+    public AboutView getAboutView() {
+        if (aboutView == null) {
+            aboutView = new AboutViewGwtImpl();
+        }
 
+        return aboutView;
+    }
 
-	@Override
-	public ElementsView getElementsView() {
-		if (elementsView == null) {
-			elementsView = new ElementsViewImpl();
-		}
-		return elementsView;
-	}
+    @Override
+    public AnimationView getAnimationView() {
+        if (animationView == null) {
+            animationView = new AnimationViewGwtImpl();
+        }
+        return animationView;
+    }
 
+    @Override
+    public VerifyPhoneGapDoneView getVerifyPhoneGapDoneView() {
+        if (animationDoneView == null) {
+            animationDoneView = new VerifyPhoneGapDoneViewGwtImpl();
+        }
+        return animationDoneView;
+    }
 
+    @Override
+    public ElementsView getElementsView() {
+        if (elementsView == null) {
+            elementsView = new ElementsViewImpl();
+        }
+        return elementsView;
+    }
 
-	
+    @Override
+    public FormsView getFormsView() {
+        if (formsView == null) {
+            formsView = new FormsViewGwtImpl();
+        }
+        return formsView;
+    }
 
-	@Override
-	public FormsView getFormsView() {
-		if (formsView == null) {
-			formsView = new FormsViewGwtImpl();
-		}
-		return formsView;
-	}
+    @Override
+    public CarouselView getCarouselHorizontalView() {
+        if (carouselView == null) {
+            carouselView = new CarouselViewGwtImpl();
+        }
+        return carouselView;
+    }
 
-	@Override
-	public CarouselView getCarouselHorizontalView() {
-		if (carouselView == null) {
-			carouselView = new CarouselViewGwtImpl();
-		}
-		return carouselView;
-	}
+    
+    public CompassWatcher watchHeading(CompassCallback callBack){
+        return phoneGap.getCompass().watchHeading(new CompassOptions(),callBack);
+    }
+    public void clearWatchHeading(CompassWatcher watcher){
+        if (watcher == null){
+            return;
+        }
+        phoneGap.getCompass().clearWatcher(watcher);
+    }
 
 
 }

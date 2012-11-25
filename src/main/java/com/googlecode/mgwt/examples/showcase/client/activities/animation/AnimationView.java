@@ -19,7 +19,9 @@ import java.util.List;
 
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.IsWidget;
+import com.googlecode.gwtphonegap.client.compass.CompassCallback;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
+import com.googlecode.mgwt.examples.showcase.client.activities.home.Topic;
 import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 
 
@@ -27,7 +29,7 @@ import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
  * @author Daniel Kurka
  *
  */
-public interface AnimationView extends IsWidget {
+public interface AnimationView extends IsWidget , CompassCallback{
 	public void setTitle(String text);
 
 	public void setLeftButtonText(String text);
@@ -36,7 +38,7 @@ public interface AnimationView extends IsWidget {
 
 	public HasCellSelectedHandler getCellSelectedHandler();
 
-	public void setAnimations(List<Animation> animations);
+	public void setAnimations(List<Topic> animations);
 
 	public HasText getFirstHeader();
 }

@@ -15,6 +15,7 @@ package com.googlecode.mgwt.examples.showcase.client.activities.animationdone;
 
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
+import com.googlecode.gwtphonegap.client.compass.CompassWatcher;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
@@ -26,22 +27,27 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
  * @author Daniel Kurka
  * 
  */
-public class AnimationDoneActivity extends MGWTAbstractActivity {
+public class PhoneGapFunctionalityVerfiedActivity extends MGWTAbstractActivity {
 
   private final ClientFactory clientFactory;
 
+  private  CompassWatcher watcher;
+  
   /**
 	 * 
 	 */
-  public AnimationDoneActivity(ClientFactory clientFactory) {
+  public PhoneGapFunctionalityVerfiedActivity(ClientFactory clientFactory) {
     this.clientFactory = clientFactory;
 
   }
 
   @Override
   public void start(AcceptsOneWidget panel, final EventBus eventBus) {
-    AnimationDoneView view = clientFactory.getAnimationDoneView();
+    VerifyPhoneGapDoneView view = clientFactory.getVerifyPhoneGapDoneView();
 
+    
+    watcher = clientFactory.watchHeading(view);
+    
     addHandlerRegistration(view.getBackButton().addTapHandler(new TapHandler() {
 
       @Override
@@ -54,5 +60,11 @@ public class AnimationDoneActivity extends MGWTAbstractActivity {
     panel.setWidget(view);
 
   }
+
+    @Override
+    public void onStop() {
+        super.onStop(); 
+        clientFactory.clearWatchHeading(watcher);
+    }
 
 }

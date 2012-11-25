@@ -25,14 +25,8 @@ import com.googlecode.mgwt.examples.showcase.client.activities.UIActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDissolvePlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDoneActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationFadePlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationFlipPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationPopPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlidePlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlideUpPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSwapPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.PhoneGapFunctionalityVerfiedActivity;
+import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyCompassPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsActivity;
@@ -92,9 +86,8 @@ public class PhoneActivityMapper implements ActivityMapper {
 		}
 
 
-		if (place instanceof AnimationSlidePlace || place instanceof AnimationSlideUpPlace || place instanceof AnimationDissolvePlace || place instanceof AnimationFadePlace
-				|| place instanceof AnimationFlipPlace || place instanceof AnimationPopPlace || place instanceof AnimationSwapPlace || place instanceof AnimationSwapPlace) {
-			return new AnimationDoneActivity(clientFactory);
+		if (place instanceof VerifyCompassPlace ) {
+			return new PhoneGapFunctionalityVerfiedActivity(clientFactory);
 		}
 		return new ShowCaseListActivity(clientFactory);
 	}

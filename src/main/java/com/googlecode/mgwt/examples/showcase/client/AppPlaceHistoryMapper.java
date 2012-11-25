@@ -19,15 +19,7 @@ import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutPlace.AboutPlaceTokenizer;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace.UIPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace.AnimationPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationCubePlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDissolvePlace.AnimationDissolvePlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationFadePlace.AnimationFadePlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationFlipPlace.AnimationFlipPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationPopPlace.AnimationPopPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlidePlace.AnimationSlidePlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlideUpPlace.AnimationSlideUpPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSwapPlace.AnimationSwapPlaceTokenizer;
+import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyCompassPlace.VerifyCompassPlaceTokenizer;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace.ElementsPlaceTokenizer;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsPlace;
@@ -37,10 +29,8 @@ import com.googlecode.mgwt.examples.showcase.client.places.HomePlace.HomePlaceTo
  * @author Daniel Kurka
  * 
  */
-@WithTokenizers({ HomePlaceTokenizer.class, UIPlaceTokenizer.class,  AboutPlaceTokenizer.class,  AnimationDissolvePlaceTokenizer.class,
-		AnimationFadePlaceTokenizer.class, AnimationFlipPlaceTokenizer.class, AnimationPlaceTokenizer.class, AnimationPopPlaceTokenizer.class, AnimationSlidePlaceTokenizer.class,
-		AnimationSlideUpPlaceTokenizer.class, AnimationSwapPlaceTokenizer.class, ElementsPlaceTokenizer.class, FormsPlace.Tokenizer.class,
-		  AnimationCubePlace.Tokenizer.class,
+@WithTokenizers({ HomePlaceTokenizer.class, UIPlaceTokenizer.class,  AboutPlaceTokenizer.class,  VerifyCompassPlaceTokenizer.class,
+		ElementsPlaceTokenizer.class, FormsPlace.Tokenizer.class,
 		CarouselPlace.Tokenizer.class,  })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

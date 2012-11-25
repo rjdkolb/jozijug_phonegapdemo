@@ -9,14 +9,7 @@ import com.googlecode.mgwt.examples.showcase.client.activities.UIActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationCubePlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDissolvePlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationFadePlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationFlipPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationPopPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlidePlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlideUpPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSwapPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyCompassPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsPlace;
@@ -71,8 +64,7 @@ public class TabletNavActivityMapper implements ActivityMapper {
 			return getAnimationActicity();
 		}
 
-		if (place instanceof AnimationSlidePlace || place instanceof AnimationSlideUpPlace || place instanceof AnimationDissolvePlace || place instanceof AnimationFadePlace
-				|| place instanceof AnimationFlipPlace || place instanceof AnimationPopPlace || place instanceof AnimationSwapPlace || place instanceof AnimationCubePlace) {
+		if (place instanceof VerifyCompassPlace ) {
 			return getAnimationActicity();
 		}
 		return new ShowCaseListActivity(clientFactory);

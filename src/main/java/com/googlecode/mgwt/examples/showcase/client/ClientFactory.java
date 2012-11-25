@@ -17,57 +17,47 @@ package com.googlecode.mgwt.examples.showcase.client;
 
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
+import com.googlecode.gwtphonegap.client.compass.CompassCallback;
+import com.googlecode.gwtphonegap.client.compass.CompassWatcher;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutView;
 import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListView;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIView;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationView;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDoneView;
+import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.VerifyPhoneGapDoneView;
 import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselView;
 import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsView;
 import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsView;
 
-
-
-
-
-
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public interface ClientFactory {
-	public ShowCaseListView getHomeView();
 
-	public EventBus getEventBus();
+    public ShowCaseListView getHomeView();
 
-	public PlaceController getPlaceController();
+    public EventBus getEventBus();
 
-	/**
-	 * @return
-	 */
-	public UIView getUIView();
+    public PlaceController getPlaceController();
 
-	public AboutView getAboutView();
+    /**
+     * @return
+     */
+    public UIView getUIView();
 
-	public AnimationView getAnimationView();
+    public AboutView getAboutView();
 
-	public AnimationDoneView getAnimationDoneView();
+    public AnimationView getAnimationView();
 
+    public VerifyPhoneGapDoneView getVerifyPhoneGapDoneView();
 
-	public ElementsView getElementsView();
+    public ElementsView getElementsView();
 
+    public CarouselView getCarouselHorizontalView();
 
+    public FormsView getFormsView();
 
-
-
-
-
-
-	public CarouselView getCarouselHorizontalView();
-
-
-
-	public FormsView getFormsView();
-
-
+    public CompassWatcher watchHeading(CompassCallback callBack);
+    
+    public void clearWatchHeading(CompassWatcher watcher);
 }

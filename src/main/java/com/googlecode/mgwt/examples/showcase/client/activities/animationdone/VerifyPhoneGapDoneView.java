@@ -15,25 +15,15 @@
  */
 package com.googlecode.mgwt.examples.showcase.client.activities.animationdone;
 
-import com.google.gwt.place.shared.Place;
-import com.google.gwt.place.shared.PlaceTokenizer;
+import com.google.gwt.user.client.ui.IsWidget;
+import com.googlecode.gwtphonegap.client.compass.CompassCallback;
+import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 
 /**
  * @author Daniel Kurka
- *
+ * 
  */
-public class AnimationFlipPlace extends Place {
-	public static class AnimationFlipPlaceTokenizer implements PlaceTokenizer<AnimationFlipPlace> {
+public interface VerifyPhoneGapDoneView extends IsWidget, CompassCallback {
+	public HasTapHandlers getBackButton();
 
-		@Override
-		public AnimationFlipPlace getPlace(String token) {
-			return new AnimationFlipPlace();
-		}
-
-		@Override
-		public String getToken(AnimationFlipPlace place) {
-			return "";
-		}
-
-	}
 }

@@ -13,15 +13,22 @@
  */
 package com.googlecode.mgwt.examples.showcase.client.activities.animation;
 
+import com.google.gwt.core.shared.GWT;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
+import com.googlecode.gwtphonegap.client.compass.CompassCallback;
+import com.googlecode.gwtphonegap.client.compass.CompassError;
+import com.googlecode.gwtphonegap.client.compass.CompassHeading;
+import com.googlecode.gwtphonegap.client.compass.CompassWatcher;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
+import com.googlecode.mgwt.examples.showcase.client.activities.Item;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.Animation.AnimationNames;
+import com.googlecode.mgwt.examples.showcase.client.activities.home.Topic;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionEvent;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionNames;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
@@ -35,8 +42,10 @@ import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 public class AnimationActivity extends MGWTAbstractActivity {
 
   private final ClientFactory clientFactory;
-  private List<Animation> animations;
+  private List<Topic> animations;
 
+  private CompassWatcher compassWatcher; 
+  
   /**
 	 * 
 	 */
@@ -48,6 +57,19 @@ public class AnimationActivity extends MGWTAbstractActivity {
   @Override
   public void start(AcceptsOneWidget panel, final EventBus eventBus) {
     AnimationView view = clientFactory.getAnimationView();
+    
+    clientFactory.watchHeading(new CompassCallback() {
+
+          @Override
+          public void onError(CompassError error) {
+              GWT.log(error.toString());
+          }
+
+          @Override
+          public void onSuccess(CompassHeading heading) {
+              //TopicSelectedEvent.fire(eventBus, heading);
+          }
+      });
 
     view.setLeftButtonText("Home");
     view.setTitle("Animation");
@@ -70,7 +92,7 @@ public class AnimationActivity extends MGWTAbstractActivity {
           public void onCellSelected(CellSelectedEvent event) {
             int index = event.getIndex();
 
-            AnimationSelectedEvent.fire(eventBus, animations.get(index));
+             TopicSelectedEvent.fire(eventBus, animations.get(index));
 
           }
         }));
@@ -79,19 +101,21 @@ public class AnimationActivity extends MGWTAbstractActivity {
 
   }
 
+    @Override
+    public void onStop() {
+        super.onStop(); 
+        clientFactory.clearWatchHeading(compassWatcher);
+    }
+
   /**
    * @return
    */
-  private List<Animation> createAnimations() {
-    ArrayList<Animation> list = new ArrayList<Animation>();
+  private List<Topic> createAnimations() {
+    ArrayList<Topic> list = new ArrayList<Topic>();
 
-    list.add(new Animation(AnimationNames.SLIDE, "Slide"));
-    list.add(new Animation(AnimationNames.SLIDE_UP, "Slide up"));
-    list.add(new Animation(AnimationNames.DISSOLVE, "Dissolve"));
-    list.add(new Animation(AnimationNames.FADE, "Fade"));
-    list.add(new Animation(AnimationNames.FLIP, "Flip"));
-    list.add(new Animation(AnimationNames.POP, "Pop"));
-    list.add(new Animation(AnimationNames.SWAP, "Swap"));
+    list.add(new Topic("Compass",1));
+    //list.add(new Item(AnimationNames.SLIDE_UP, "Slide up"));
+   
     // list.add(new Animation("Cube"));
 
     return list;
